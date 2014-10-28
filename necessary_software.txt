@@ -1,4 +1,0 @@
-Here we list all of the necessary software for this project. Be sure to install:
-1. Python 3 [https://www.python.org/download/]
-2. MAMP --> Will be necessary when we start interacting with our project via a web interface. If you are using a Windows computer, you'll need WAMP. [http://www.mamp.info/en/downloads/]
-3. SQLite --> For data processing of Million Song Dataset [http://www.sqlite.org/download.html]
