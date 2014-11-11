@@ -63,11 +63,12 @@ class Song {
     public function __construct($songId) {
         $this->songId = $songId;
         $getURL = $this->createURL($songId);
-        $json = file_get_contents($getURL);
+        $json = @file_get_contents($getURL); //suppress any warnings. If we fail, just wait a minute
         while ($json === FALSE) {
+            echo "\nwaiting\n";
             // Request failed, probably due to rate limit. Wait for a minute (Echo Nest has per-minute limits) and try again
             sleep(60);
-            $json = @file_get_contents($getURL); //suppress any warnings. If we fail, just try another key.
+            $json = @file_get_contents($getURL);
         }
         $response = json_decode($json,true);
         $this->processGETResponse($response);

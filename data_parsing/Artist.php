@@ -22,12 +22,12 @@ class Artist {
     public function __construct($artistId) {
         $this->artistId = $artistId;
         $getURL = $this->createURL($artistId);
-        // var_dump($getURL);
-        $json = @file_get_contents($getURL); //suppress any warnings. If we fail, just try another key.
+        $json = @file_get_contents($getURL); //suppress any warnings. If we fail, just wait a minute
         while ($json === FALSE) {
+            echo("\nwaiting\n");
             // Request failed, probably due to rate limit. Wait for a minute (Echo Nest has per-minute limits) and try again
             sleep(60);
-            $json = @file_get_contents($getURL); //suppress any warnings. If we fail, just try another key.
+            $json = @file_get_contents($getURL);
         }
         $response = json_decode($json,true);
         $this->processGETResponse($response);
@@ -55,15 +55,10 @@ class Artist {
              * GET request for more information about the song.
              */
             $this->ignoreDuplicateSongs($artist["songs"]);
-            // $this->songs = [];
-            // foreach ($artist["songs"] as $song) {
-            //     $this->songs[] = new Song($song["id"]);
-            // }
-
 
         } else {
             // Err. Something went wrong. Display the error.
-            echo $response["response"]["status"]["message"];
+            echo "\n".$response["response"]["status"]["message"]."\n";
         }
     }
 
@@ -108,6 +103,5 @@ class Artist {
                 $song->addToCSV($handle);
             }
         }
-        var_dump($this->songs);
     }
 }
