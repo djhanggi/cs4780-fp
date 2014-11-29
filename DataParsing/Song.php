@@ -59,6 +59,15 @@ class DataParsing_Song {
     /** @var float */
     public $danceability;
 
+    /** @var float */
+    public $x;
+
+    /** @var float */
+    public $y;
+
+    /** @var float */
+    public $euclidean_distance;
+
     public function __construct() {
         // empty constructor. Allows for the custom constructors
         // (withID and withCSVLine) below.
@@ -87,31 +96,31 @@ class DataParsing_Song {
 
     /**
      * Creates DataParsing_Song object from CSV line
-     * @param string $songString
+     * @param array $songString
      */
-    public static function withCSVLine($songString) {
+    public static function withCSVLine($song_info) {
         $instance = new self();
-        // First convert CSV string to array
-        $song_info = str_getcsv($songString);
-        // Now just set all fields
-        $instance->songId = $song_info[0];
-        $instance->title = $song_info[1];
-        $instance->artist_name = $song_info[2];
-        $instance->song_type = implode(', ', $song_info[3]);
-        $instance->artist_id = $song_info[4];
-        $instance->key = $song_info[5];
-        $instance->energy = $song_info[6];
-        $instance->liveness = $song_info[7];
-        $instance->tempo = $song_info[8];
-        $instance->speechiness = $song_info[9];
-        $instance->acousticness = $song_info[10];
-        $instance->instrumentalness = $song_info[11];
-        $instance->mode = $song_info[12];
-        $instance->time_signature = $song_info[13];
-        $instance->duration = $song_info[14];
-        $instance->loudness = $song_info[15];
-        $instance->valence = $song_info[16];
-        $instance->danceability = $song_info[17];
+        if ($song_info) {
+            $instance->songId = $song_info[0];
+            $instance->title = $song_info[1];
+            $instance->artist_name = $song_info[2];
+            $instance->artist_id = $song_info[3];
+            $instance->song_type = explode(', ', $song_info[4]);
+            $instance->key = $song_info[5];
+            $instance->energy = $song_info[6];
+            $instance->liveness = $song_info[7];
+            $instance->tempo = $song_info[8];
+            $instance->speechiness = $song_info[9];
+            $instance->acousticness = $song_info[10];
+            $instance->instrumentalness = $song_info[11];
+            $instance->mode = $song_info[12];
+            $instance->time_signature = $song_info[13];
+            $instance->duration = $song_info[14];
+            $instance->loudness = $song_info[15];
+            $instance->valence = $song_info[16];
+            $instance->danceability = $song_info[17];
+        }
+        
         return $instance;
     }
 
