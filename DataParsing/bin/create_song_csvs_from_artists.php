@@ -1,8 +1,9 @@
 #!/usr/bin/php
 <?php
 
+// require_once($_SERVER['DOCUMENT_ROOT']."/Loader.php");
 // IMPORTANT! Change this absolute path to one that matches the absolute path to your own version of this
-require_once "/Users/vesha/Desktop/cs4780-fp/data_parsing/Loader.php";
+require_once __DIR__."/../../Loader.php";
 
 // CHANGE THIS! This array should contain the names of the artists that you want to pull data for.
 $artists = ["Queen", "Bee Gees", "David Bowie", "Pink Floyd", "The Rolling Stones"];
@@ -30,7 +31,7 @@ function artistSongsToCSV($artistName, $fid) {
     $response = json_decode($json,true);
     if ($response["response"]["artists"]) {
         $artistID = $response["response"]["artists"][0]["id"];
-        $artist = new Artist($artistID);
+        $artist = new DataParsing_Artist($artistID);
         $artist->addSongsToCSV($fid);
     }       
 }

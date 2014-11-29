@@ -1,6 +1,9 @@
 <?php
-require_once "Loader.php";
-class AudioSummary {
+
+// require_once($_SERVER['DOCUMENT_ROOT']."/Loader.php");
+require_once __DIR__."/../Loader.php";
+
+class DataParsing_AudioSummary {
     /** @var int */
     public $key;
 

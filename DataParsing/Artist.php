@@ -1,8 +1,9 @@
-<?php 
+<?php
 
-require_once "Loader.php";
+// require_once($_SERVER['DOCUMENT_ROOT']."/Loader.php");
+require_once __DIR__."/../Loader.php";
 
-class Artist {
+class DataParsing_Artist {
 
     /** @var int */
     public $artistId;
@@ -13,10 +14,10 @@ class Artist {
     /** @var float */
     public $familiarity;
 
-    /** @var Term[] */
+    /** @var DataParsing_Term[] */
     public $terms;
 
-    /** @var Song[] */
+    /** @var DataParsing_Song[] */
     public $songs;
 
     public function __construct($artistId) {
@@ -42,14 +43,14 @@ class Artist {
 
             $this->familiarity = $artist["familiarity"];
 
-            // Term[] creation
+            // DataParsing_Term[] creation
             $this->terms = [];
             foreach ($artist["terms"] as $term_array) {
-                $this->terms[] = new Term($term_array);
+                $this->terms[] = new DataParsing_Term($term_array);
             }
 
             /** 
-             * Song[] creation. There should only be 15 iterations--the 
+             * DataParsing_Song[] creation. There should only be 15 iterations--the 
              * song array returned by Echo Nest holds up to 15 songs. This 
              * won't be instantaneous--each of the songs will fire off another
              * GET request for more information about the song.
@@ -74,7 +75,7 @@ class Artist {
             $title = preg_replace('/[^a-z]+/i', '', strtolower($song["title"]));
             if (!in_array($title, $unique_songs)) {
                 $unique_songs[] = $title;
-                $this->songs[] = new Song($song["id"]);
+                $this->songs[] = DataParsing_Song::withID($song["id"]);
             }
         }
     }
@@ -86,7 +87,7 @@ class Artist {
      */
     private function createURL($artistId) {
         return "http://developer.echonest.com/api/v4/artist/profile?".
-               "api_key=".APIKeys::CURRENT_KEY."&id=$artistId&format=json".
+               "api_key=".DataParsing_APIKeys::CURRENT_KEY."&id=$artistId&format=json".
                "&bucket=familiarity&bucket=hotttnesss&bucket=terms&bucket=songs";
    }
 

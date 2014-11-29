@@ -1,6 +1,9 @@
 <?php
-require_once "Loader.php";
-class Song {
+
+// require_once($_SERVER['DOCUMENT_ROOT']."/Loader.php");
+require_once __DIR__."/../Loader.php";
+
+class DataParsing_Song {
 
     /** @var String */
     public $songId;
@@ -56,13 +59,20 @@ class Song {
     /** @var float */
     public $danceability;
 
+    public function __construct() {
+        // empty constructor. Allows for the custom constructors
+        // (withID and withCSVLine) below.
+    }
+
     /**
      * Queries EchoNest API to retrieve song data
      * @param int $songId
      */
-    public function __construct($songId) {
-        $this->songId = $songId;
-        $getURL = $this->createURL($songId);
+    public static function withID($songId) {
+        $instance = new self();
+
+        $instance->songId = $songId;
+        $getURL = $instance->createURL($songId);
         $json = @file_get_contents($getURL); //suppress any warnings. If we fail, just wait a minute
         while ($json === FALSE) {
             echo "\nwaiting\n";
@@ -71,7 +81,38 @@ class Song {
             $json = @file_get_contents($getURL);
         }
         $response = json_decode($json,true);
-        $this->processGETResponse($response);
+        $instance->processGETResponse($response);
+        return $instance;
+    }
+
+    /**
+     * Creates DataParsing_Song object from CSV line
+     * @param string $songString
+     */
+    public static function withCSVLine($songString) {
+        $instance = new self();
+        // First convert CSV string to array
+        $song_info = str_getcsv($songString);
+        // Now just set all fields
+        $instance->songId = $song_info[0];
+        $instance->title = $song_info[1];
+        $instance->artist_name = $song_info[2];
+        $instance->song_type = implode(', ', $song_info[3]);
+        $instance->artist_id = $song_info[4];
+        $instance->key = $song_info[5];
+        $instance->energy = $song_info[6];
+        $instance->liveness = $song_info[7];
+        $instance->tempo = $song_info[8];
+        $instance->speechiness = $song_info[9];
+        $instance->acousticness = $song_info[10];
+        $instance->instrumentalness = $song_info[11];
+        $instance->mode = $song_info[12];
+        $instance->time_signature = $song_info[13];
+        $instance->duration = $song_info[14];
+        $instance->loudness = $song_info[15];
+        $instance->valence = $song_info[16];
+        $instance->danceability = $song_info[17];
+        return $instance;
     }
 
     /**
@@ -110,7 +151,7 @@ class Song {
      * @return String (url)
      */
     private function createURL($songId) {
-        return "http://developer.echonest.com/api/v4/song/profile?api_key=".APIKeys::CURRENT_KEY."&format=json&id=$songId".
+        return "http://developer.echonest.com/api/v4/song/profile?api_key=".DataParsing_APIKeys::CURRENT_KEY."&format=json&id=$songId".
         "&bucket=audio_summary&bucket=artist_discovery&bucket=artist_discovery_rank&bucket=artist_familiarity".
         "&bucket=artist_familiarity_rank&bucket=artist_hotttnesss&bucket=artist_hotttnesss_rank".
         "&bucket=artist_location&bucket=song_currency&bucket=song_currency_rank&bucket=song_discovery".
