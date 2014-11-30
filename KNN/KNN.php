@@ -4,6 +4,9 @@ require_once __DIR__."/../Loader.php";
 
 class KNN_KNN {
 
+    /** @var DataParsing_Song */
+    public $song_to_be_classified;
+
     /** @var DataParsing_Song[] */
     public $kNearest;
 
@@ -24,6 +27,7 @@ class KNN_KNN {
     
     public function tryNewSong($songId) {
         $song = DataParsing_Song::withID($songId);
+        $this->song_to_be_classified = $song;
         $this->nearest_neighbors->sortSongs($song);
     }
 

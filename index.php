@@ -17,13 +17,15 @@
                         url: 'KNN/bin/handleSubmission.php',
                         data: $('form').serialize(),
                         success: function(data) {
+                            data = JSON.parse(data);
                             if (data === 'failure') {
-                                // $('#form_failure').css('display', 'inline');
+                                $('#form_failure').css('display', 'inline');
                                 console.log("it didn't work");
                             } else {
-                                // $('#form_success').css('display', 'inline');
-                                console.log("data is: ");
-                                console.log(data);
+                                $('#form_success').css('display', 'inline');
+                                $('#song_name').append(data.song_to_be_classified.title + " by " + data.song_to_be_classified.artist_name);
+                                $('#predicted_danceability').append(data.average_danceability);
+                                $('#actual_danceability').append(data.song_to_be_classified.danceability);
                                 $('html, body').animate({
                                     scrollTop: $('#results').offset().top
                                 }, 1000);
@@ -43,18 +45,20 @@
                 <form action="index.php" method="POST">
                     <input type="text" name="song_name" placeholder="Song Name"></input></br>
                     <input type="text" name="artist_name" placeholder="Artist Name"></input></br>
-                    <!-- <input type="submit"></input> -->
                     <button>Submit</button>
                 </form>
-              <!--   <p>Predicted danceability is: </p>
-                <p>Top 5 matches: </p> -->
+                <p id="#form_failure" style="display:none">It didn't work!</p>
+                <p id="#form_success" style="display:none">It worked!</p>
             </div>
         </div>
         <div id="results" class="half-panel">
             <div class="content">
                 <h1>Results</h1>
-                <h2>Song to be Classified:</h2>
-                <h2>Predicted Danceability:</h2>
+                <h2 id="song_name">Song to be Classified: </h2>
+                <h2 id="predicted_danceability">Predicted Danceability: </h2>
+                <h2 id="actual_danceability">Actual Danceability: </h2>
+                <!--   <p>Predicted danceability is: </p>
+                <p>Top 5 matches: </p> -->
             </div>
 
         </div>
