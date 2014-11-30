@@ -17,6 +17,25 @@
     height: 100%;
 }
 
+#dendrogram {
+    background-color: rgba(245, 61, 47, .7);
+    padding: 20px;
+    text-align: left; 
+}
+
+#dendrogram p {
+    padding: 30px;
+}
+
+#dendro_img {
+    background-image: url('../images/dendrogram.png');
+    height: 50%;
+    width: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 0 25%;
+}
+
 .panel {
     height: 100%;
     width: 100%;

@@ -32,11 +32,29 @@
                                 $('#actual_danceability').append(data.song_to_be_classified.danceability);
                                 $('#prediction_error').append((data.average_danceability - data.song_to_be_classified.danceability).toFixed(4));
 
-                                $('#top_k_songs').append("<h1>Top " + data.k + " Songs</h1>");
+                                $('#top_k_songs').append("<h2>Top " + data.k + " Songs</h2>");
+                                $('#top_k_songs').append("<table>");
+                                $('#top_k_songs').append("<tr>");
+                                $('#top_k_songs').append("<td>Title</td>");
+                                $('#top_k_songs').append("<td>Artist</td>");
+                                $('#top_k_songs').append("<td>Danceability</td>");
+                                $('#top_k_songs').append("<td>Valence</td>");
+                                $('#top_k_songs').append("<td>Energy</td>");
+                                $('#top_k_songs').append("</tr>");
+
                                 $.each(data.kNearest, function(index, value) {
-                                    $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
+                                    // $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
+                                    $('#top_k_songs').append("<tr>");
+                                    $('#top_k_songs').append("<td>" + value.title + "</td></br>");
+                                    $('#top_k_songs').append("<td>" + value.artist_name + "</td></br>");
+                                    $('#top_k_songs').append("<td>" + value.danceability + "</td></br>");
+                                    $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
+                                    $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
+                                    $('#top_k_songs').append("</tr>");
                                 });
+                                $('#top_k_songs').append("</table>");
                                 $('#results').css('display', 'block');
+                                $('#dendrogram').css('display', 'block');
 
                                 $('html, body').animate({
                                     scrollTop: $('#results').offset().top
@@ -55,8 +73,8 @@
             <div class="panel_content">
                 <h1>Do You Want to Dance?</h1>
                 <form action="index.php" method="POST">
-                    <input type="text" name="song_name" placeholder="Song Name"></input></br>
-                    <input type="text" name="artist_name" placeholder="Artist Name"></input></br>
+                    <input type="text" name="song_name" placeholder="Song Name">
+                    <input type="text" name="artist_name" placeholder="Artist Name">
                     <button>Submit</button>
                 </form>
                 <p id="#form_failure" style="display:none">It didn't work!</p>
@@ -66,17 +84,20 @@
         <div id="results" class="panel" style="display:none">
             <div class="content">
                 <h1>Results</h1>
-                <h2 id="song_name">Song to be Classified: </h2>
-                <h2 id="predicted_danceability">Predicted Danceability: </h2>
-                <h2 id="actual_danceability">Actual Danceability: </h2>
-                <h2 id="prediction_error">Prediction Error: </h2>
+                <h3 id="song_name">Song to be Classified: </h3>
+                <h3 id="predicted_danceability">Predicted Danceability: </h3>
+                <h3 id="actual_danceability">Actual Danceability: </h3>
+                <h3 id="prediction_error">Prediction Error: </h3>
                 <div id="top_k_songs">
-
                 </div>
-                <!--   <p>Predicted danceability is: </p>
-                <p>Top 5 matches: </p> -->
             </div>
-
+        </div>
+        <div id="dendrogram" class="panel" style="display:none">
+            <div class="content">
+                <h1>K-Means Clustering Dendrogram</h1>
+                <div id="dendro_img"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lorem et massa fringilla tempus. Aenean convallis, sem eget tristique aliquam, metus diam fringilla metus, vel tincidunt dolor augue in turpis. Vivamus elementum mi eu imperdiet porttitor. Nam laoreet turpis massa, sit amet gravida nisi sagittis at. Nullam aliquet cursus posuere. Vivamus efficitur felis vitae lacus pellentesque, a placerat ipsum faucibus. Aliquam non lacus eu nulla posuere auctor. Aliquam at maximus ante. Nunc ac dapibus massa, vitae condimentum leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nisl odio, convallis faucibus ornare nec, pharetra id ante. Nulla suscipit dui magna. Cras libero enim, vehicula vel magna id, molestie tempus orci. Quisque nunc neque, congue at diam vitae, commodo maximus ipsum.</p>
+            </div>
         </div>
         <div id="credits" class="panel">
             <h1>Explanation and Things</h1>
