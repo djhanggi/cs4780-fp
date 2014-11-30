@@ -27,6 +27,21 @@ class KNN_KNN {
         $this->nearest_neighbors->sortSongs($song);
     }
 
+    public function searchAndBegin($songName, $artistName) {
+        $songName = rawurlencode($songName);
+        $artistName = rawurlencode($artistName);
+        $searchQuery = "http://developer.echonest.com/api/v4/song/search?api_key=" . 
+            DataParsing_APIKeys::CURRENT_KEY . "&format=json&results=1&artist=" . 
+            $artistName . "&title=" . $songName;
+        // echo $searchQuery;
+        $json = @file_get_contents($searchQuery);
+        $response = json_decode($json,true);
+        if ($response["response"]["songs"]) {
+            $songId = $response["response"]["songs"][0]["id"];
+            $this->tryNewSong($songId);
+        } 
+    }
+
     public function findTopK($k) {
         $this->kNearest = $this->nearest_neighbors->getKNearest($k);
         $total_danceability = 0;
