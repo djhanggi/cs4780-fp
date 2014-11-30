@@ -8,7 +8,7 @@ class KNN_NearestNeighbor {
     private $data;
 
     /** @var DataParsing_Song[] */
-    private $song_to_be_classified;
+    public $song_to_be_classified;
 
     /** @var KNN_SongTransformer */
     private $transformer;
@@ -56,7 +56,7 @@ class KNN_NearestNeighbor {
      * @param DataParsing_Song $song2
      */
     private function setEuclideanDistance($song1, $song2) {
-        $song2->euclidean_distance = (pow($song2->x - $song1->x, 2) + pow($song2->y - $song1->y, 2));
+        $song2->euclidean_distance = sqrt(pow($song2->x - $song1->x, 2) + pow($song2->y - $song1->y, 2));
     }
 
     /** 
