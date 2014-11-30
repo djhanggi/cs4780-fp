@@ -9,6 +9,10 @@
             $(function () {
 
                 $('form').on('submit', function (e) {
+                    $('#song_name').html("Song to be Classified: ");
+                    $('#predicted_danceability').html("Predicted Danceability: ");
+                    $('#actual_danceability').html("Actual Danceability: ");
+                    $('#prediction_error').html("Prediction Error: ");
 
                     e.preventDefault();
                     console.log($('form').serialize());
@@ -26,6 +30,13 @@
                                 $('#song_name').append(data.song_to_be_classified.title + " by " + data.song_to_be_classified.artist_name);
                                 $('#predicted_danceability').append(data.average_danceability);
                                 $('#actual_danceability').append(data.song_to_be_classified.danceability);
+                                $('#prediction_error').append((data.average_danceability - data.song_to_be_classified.danceability).toFixed(4));
+
+                                $('#top_k_songs').append("<h1>Top " + data.k + " Songs</h1>");
+                                $.each(data.kNearest, function(index, value) {
+                                    $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
+                                });
+
                                 $('html, body').animate({
                                     scrollTop: $('#results').offset().top
                                 }, 1000);
@@ -51,12 +62,16 @@
                 <p id="#form_success" style="display:none">It worked!</p>
             </div>
         </div>
-        <div id="results" class="half-panel">
+        <div id="results" class="panel">
             <div class="content">
                 <h1>Results</h1>
                 <h2 id="song_name">Song to be Classified: </h2>
                 <h2 id="predicted_danceability">Predicted Danceability: </h2>
                 <h2 id="actual_danceability">Actual Danceability: </h2>
+                <h2 id="prediction_error">Prediction Error: </h2>
+                <div id="top_k_songs">
+
+                </div>
                 <!--   <p>Predicted danceability is: </p>
                 <p>Top 5 matches: </p> -->
             </div>

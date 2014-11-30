@@ -16,6 +16,9 @@ class KNN_KNN {
     /** @var KNN_NearestNeighbor */
     public $nearest_neighbors;
 
+    /** @var int */
+    public $k;
+
     /**
      * @param String $csv_filename
      */
@@ -47,6 +50,7 @@ class KNN_KNN {
     }
 
     public function findTopK($k) {
+        $this->k = $k;
         $this->kNearest = $this->nearest_neighbors->getKNearest($k);
         $total_danceability = 0;
         foreach ($this->kNearest as $song) {

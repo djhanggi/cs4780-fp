@@ -11,17 +11,7 @@
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.half-panel {
-    height: 50%;
-    width: 100%;
-    clear: both;
-    position: relative;
-    text-align: center;
-    background-color: rgba(159, 76, 108, .7);
-    padding: 20px;
-}
-
-.half-panel .content {
+.panel .content {
     border-style: solid;
     border-color: white;
     height: 100%;
@@ -32,6 +22,21 @@
     width: 100%;
     clear: both;
     position: relative;
+    text-align: center;
+    padding: 30px;
+}
+
+#results {
+    background-color: rgba(159, 76, 108, .7);
+    padding: 20px;
+    text-align: left;
+}
+
+#results .content {
+    padding: 30px;
+}
+
+#results h1 {
     text-align: center;
 }
 
