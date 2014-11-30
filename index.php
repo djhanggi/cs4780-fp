@@ -24,6 +24,9 @@
                                 // $('#form_success').css('display', 'inline');
                                 console.log("data is: ");
                                 console.log(data);
+                                $('html, body').animate({
+                                    scrollTop: $('#results').offset().top
+                                }, 1000);
                             }
                         }
                     });
@@ -46,6 +49,14 @@
               <!--   <p>Predicted danceability is: </p>
                 <p>Top 5 matches: </p> -->
             </div>
+        </div>
+        <div id="results" class="half-panel">
+            <div class="content">
+                <h1>Results</h1>
+                <h2>Song to be Classified:</h2>
+                <h2>Predicted Danceability:</h2>
+            </div>
+
         </div>
         <div id="credits" class="panel">
             <h1>Explanation and Things</h1>
