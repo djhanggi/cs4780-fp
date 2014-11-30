@@ -13,7 +13,7 @@
                     $('#predicted_danceability').html("Predicted Danceability: ");
                     $('#actual_danceability').html("Actual Danceability: ");
                     $('#prediction_error').html("Prediction Error: ");
-
+                    $('#top_k_songs').html("");
                     e.preventDefault();
                     console.log($('form').serialize());
                     $.ajax({
@@ -36,6 +36,7 @@
                                 $.each(data.kNearest, function(index, value) {
                                     $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
                                 });
+                                $('#results').css('display', 'block');
 
                                 $('html, body').animate({
                                     scrollTop: $('#results').offset().top
@@ -62,7 +63,7 @@
                 <p id="#form_success" style="display:none">It worked!</p>
             </div>
         </div>
-        <div id="results" class="panel">
+        <div id="results" class="panel" style="display:none">
             <div class="content">
                 <h1>Results</h1>
                 <h2 id="song_name">Song to be Classified: </h2>
