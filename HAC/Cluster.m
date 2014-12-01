@@ -11,7 +11,15 @@ classdef Cluster < handle
     methods (Static)
         
         function cluster = mergeClusters(cluster1, cluster2, description)
-            cluster = Cluster([cluster1 cluster2], description);
+            if nargin == 2
+                cluster = Cluster([cluster1 cluster2], '');
+                cluster.description = ...
+                    sprintf('Danceability: %f, Valence: %f, Energy: %f', ...
+                    cluster.averageDanceability(), cluster.averageValence(), ...
+                    cluster.averageEnergy());
+            elseif nargin == 3
+                cluster = Cluster([cluster1 cluster2], description);
+            end
         end
         
         function clusters = agglomerate(songs, links)
@@ -24,7 +32,7 @@ classdef Cluster < handle
             for l = 1:length(links)
                 cluster1 = clusters(links(l, 1));
                 cluster2 = clusters(links(l, 2));
-                clusters = [clusters Cluster.mergeClusters(cluster1, cluster2, l)];
+                clusters = [clusters Cluster.mergeClusters(cluster1, cluster2)];
             end
             
         end
@@ -54,6 +62,30 @@ classdef Cluster < handle
                 children(s) = self.subclusters(s).convert2struct();
             end
             cluster = struct('name', self.description, 'children', children);
+        end
+        
+        function danceability = averageDanceability(self)
+            danceability = 0;
+            for s = self.data
+                danceability = danceability + s.features.danceability;
+            end
+            danceability = danceability / length(self.data);
+        end
+        
+        function valence = averageValence(self)
+            valence = 0;
+            for s = self.data
+                valence = valence + s.features.valence;
+            end
+            valence = valence / length(self.data);
+        end
+        
+        function energy = averageEnergy(self)
+            energy = 0;
+            for s = self.data
+                energy = energy + s.features.energy;
+            end
+            energy = energy / length(self.data);
         end
         
         function json = outputClusterJSON(self)
