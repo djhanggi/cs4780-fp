@@ -53,11 +53,53 @@
 
 #results .content {
     padding: 30px;
+   
+}
+ /*veena*/
+#results .content div{
+    display:inline-block;
 }
 
-#results h1 {
-    text-align: center;
+#results .content div #top_kdance_songs > thead, 
+#results .content div #top_kvalence_songs > thead, 
+#results .content div #top_kenergy_songs > thead{
+    font-weight:bold;
+    font-size:16px;
+        border-bottom-style: solid;
+    border-color:#fff;
 }
+
+
+#results .content div #top_kdance_songs > td{
+    width:200px;
+    padding-right:5px;
+
+}
+
+#results .content div #top_kvalence_songs > td{
+    width:200px;
+    padding-right:5px;
+
+}
+
+#results .content div #top_kenergy_songs > td{
+    max-width:200px;
+    padding-right:5px;
+
+}
+
+#results h2 {
+    font-size:13px;
+}
+
+/*end veena*/
+
+#results h1 {
+    text-align: left;
+    margin:0 auto;
+}
+
+
 
 #explanation {
     text-align: justify;

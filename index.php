@@ -8,11 +8,22 @@
         <script>
             $(function () {
 
+
                 $('form').on('submit', function (e) {
+
                     $('#song_name').html("Song to be Classified: ");
                     $('#predicted_danceability').html("Predicted Danceability: ");
                     $('#actual_danceability').html("Actual Danceability: ");
-                    $('#prediction_error').html("Prediction Error: ");
+                    $('#dance_prediction_error').html("Prediction Error: ");
+
+                    $('#predicted_valence').html("Predicted Valence: ");
+                    $('#actual_valence').html("Actual Valence: ");
+                    $('#valence_prediction_error').html("Prediction Error: ");
+
+                    $('#predicted_energy').html("Predicted Energy: ");
+                    $('#actual_energy').html("Actual Energy: ");
+                    $('#energy_prediction_error').html("Prediction Error: ");
+
                     $('#top_k_songs').html("");
                     e.preventDefault();
                     console.log($('form').serialize());
@@ -20,7 +31,11 @@
                         type: 'post',
                         url: 'KNN/bin/handleSubmission.php',
                         data: $('form').serialize(),
+                        beforeSend:function(x){
+                            $('#main').html("<progress id='bar' value='0' max='100'></progress>").show();
+                        },
                         success: function(data) {
+                            $('#bar').val(100);
                             data = JSON.parse(data);
                             if (data === 'failure') {
                                 $('#form_failure').css('display', 'inline');
@@ -30,29 +45,88 @@
                                 $('#song_name').append(data.song_to_be_classified.title + " by " + data.song_to_be_classified.artist_name);
                                 $('#predicted_danceability').append(data.average_danceability);
                                 $('#actual_danceability').append(data.song_to_be_classified.danceability);
-                                $('#prediction_error').append((data.average_danceability - data.song_to_be_classified.danceability).toFixed(4));
+                                $('#dance_prediction_error').append((data.average_danceability - data.song_to_be_classified.danceability).toFixed(4));
 
-                                $('#top_k_songs').append("<h2>Top " + data.k + " Songs</h2>");
-                                $('#top_k_songs').append("<table>");
-                                $('#top_k_songs').append("<tr>");
-                                $('#top_k_songs').append("<td>Title</td>");
-                                $('#top_k_songs').append("<td>Artist</td>");
-                                $('#top_k_songs').append("<td>Danceability</td>");
-                                $('#top_k_songs').append("<td>Valence</td>");
-                                $('#top_k_songs').append("<td>Energy</td>");
-                                $('#top_k_songs').append("</tr>");
+                                $('#predicted_valence').append(data.average_valence);
+                                $('#actual_valence').append(data.song_to_be_classified.valence);
+                                $('#valence_prediction_error').append((data.average_valence - data.song_to_be_classified.valence).toFixed(4));
 
-                                $.each(data.kNearest, function(index, value) {
+                                $('#predicted_energy').append(data.average_energy);
+                                $('#actual_energy').append(data.song_to_be_classified.energy);
+                                $('#energy_prediction_error').append((data.average_energy - data.song_to_be_classified.energy).toFixed(4));
+
+                                //danceability table: 
+                                $('#top_kdance_songs').append("<h3>Top " + data.k + " Songs</h3><br>");
+                                $('#top_kdance_songs').append("<table><thead>");
+                                $('#top_kdance_songs').append("<tr>");
+                                $('#top_kdance_songs').append("<th>Title</th>");
+                                $('#top_kdance_songs').append("<th>Artist</th>");
+                                $('#top_kdance_songs').append("<th>Danceability</th>");
+                                // $('#top_k_songs').append("<td>Valence</td>");
+                                // $('#top_k_songs').append("<td>Energy</td>");
+                                $('#top_kdance_songs').append("</tr></thead><tbody>");
+
+                                $.each(data.kNearest_dance, function(index, value) {
                                     // $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
-                                    $('#top_k_songs').append("<tr>");
-                                    $('#top_k_songs').append("<td>" + value.title + "</td></br>");
-                                    $('#top_k_songs').append("<td>" + value.artist_name + "</td></br>");
-                                    $('#top_k_songs').append("<td>" + value.danceability + "</td></br>");
-                                    $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
-                                    $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
-                                    $('#top_k_songs').append("</tr>");
+                                    $('#top_kdance_songs').append("<tr>");
+                                    $('#top_kdance_songs').append("<td>" + value.title + "</td></br>");
+                                    $('#top_kdance_songs').append("<td>" + value.artist_name + "</td></br>");
+                                    $('#top_kdance_songs').append("<td>" + value.danceability + "</td></br>");
+                                    // $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
+                                    // $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
+                                    $('#top_kdance_songs').append("</tr>");
                                 });
-                                $('#top_k_songs').append("</table>");
+                                $('#top_kdance_songs').append("</tbody></table>");
+
+                                //valence table: 
+                                $('#top_kvalence_songs').append("<h3>Top " + data.k + " Songs</h3><br>");
+                                $('#top_kvalence_songs').append("<table><thead>");
+                                $('#top_kvalence_songs').append("<tr>");
+                                $('#top_kvalence_songs').append("<th>Title</th>");
+                                $('#top_kvalence_songs').append("<th>Artist</th>");
+                                $('#top_kvalence_songs').append("<th>Valence</th>");
+                                // $('#top_k_songs').append("<td>Valence</td>");
+                                // $('#top_k_songs').append("<td>Energy</td>");
+                                $('#top_kvalence_songs').append("</tr></thead></tbody>");
+
+                                $.each(data.kNearest_valence, function(index, value) {
+                                    // $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
+                                    $('#top_kvalence_songs').append("<tr>");
+                                    $('#top_kvalence_songs').append("<td>" + value.title + "</td></br>");
+                                    $('#top_kvalence_songs').append("<td>" + value.artist_name + "</td></br>");
+                                    $('#top_kvalence_songs').append("<td>" + value.valence + "</td></br>");
+                                    // $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
+                                    // $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
+                                    $('#top_kvalence_songs').append("</tr>");
+                                });
+
+                                $('#top_kvalence_songs').append("</tbody></table>");
+
+                                //energy table: 
+                                $('#top_kenergy_songs').append("<h3>Top " + data.k + " Songs</h3><br>");
+                                $('#top_kenergy_songs').append("<table><thead>");
+                                $('#top_kenergy_songs').append("<tr>");
+                                $('#top_kenergy_songs').append("<th>Title</th>");
+                                $('#top_kenergy_songs').append("<th>Artist</th>");
+                                $('#top_kenergy_songs').append("<th>Energy</th>");
+                                // $('#top_k_songs').append("<td>Valence</td>");
+                                // $('#top_k_songs').append("<td>Energy</td>");
+                                $('#top_kenergy_songs').append("</tr></thead><tbody>");
+
+                                $.each(data.kNearest_energy, function(index, value) {
+                                    // $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
+                                    $('#top_kenergy_songs').append("<tr>");
+                                    $('#top_kenergy_songs').append("<td>" + value.title + "</td></br>");
+                                    $('#top_kenergy_songs').append("<td>" + value.artist_name + "</td></br>");
+                                    $('#top_kenergy_songs').append("<td>" + value.energy + "</td></br>");
+                                    // $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
+                                    // $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
+                                    $('#top_kenergy_songs').append("</tr>");
+                                });
+
+                                $('#top_kenergy_songs').append("</tbody></table>");
+
+
                                 $('#results').css('display', 'block');
                                 $('#dendrogram').css('display', 'block');
 
@@ -77,19 +151,40 @@
                     <input type="text" name="artist_name" placeholder="Artist Name">
                     <button>Submit</button>
                 </form>
+                <div id="main"></div>
                 <p id="#form_failure" style="display:none">It didn't work!</p>
                 <p id="#form_success" style="display:none">It worked!</p>
             </div>
         </div>
+     
         <div id="results" class="panel" style="display:none">
             <div class="content">
-                <h1>Results</h1>
-                <h3 id="song_name">Song to be Classified: </h3>
-                <h3 id="predicted_danceability">Predicted Danceability: </h3>
-                <h3 id="actual_danceability">Actual Danceability: </h3>
-                <h3 id="prediction_error">Prediction Error: </h3>
-                <div id="top_k_songs">
+                <div>
+                    <h1>Results</h1>
+                    <h3 id="song_name">Song to be Classified: </h3>
+                    <h3 id="predicted_danceability">Predicted Danceability: </h3>
+                    <h3 id="actual_danceability">Actual Danceability: </h3>
+                    <h3 id="prediction_error">Prediction Error: </h3>
+                    <div id="top_kdance_songs">
+                    </div>
                 </div>
+
+                <div>
+                    <h3 id="predicted_valence">Predicted Danceability: </h3>
+                    <h3 id="actual_valence">Actual Danceability: </h3>
+                    <h3 id="valence_prediction_error">Prediction Error: </h3>
+                    <div id="top_kvalence_songs">
+                    </div>
+                </div>
+
+               <div>
+                    <h3 id="predicted_energy">Predicted Danceability: </h3>
+                    <h3 id="actual_energy">Actual Danceability: </h3>
+                    <h3 id="energy_prediction_error">Prediction Error: </h3>
+                    <div id="top_kenergy_songs">
+                    </div>
+                </div>
+
             </div>
         </div>
         <div id="dendrogram" class="panel" style="display:none">

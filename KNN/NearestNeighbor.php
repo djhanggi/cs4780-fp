@@ -16,6 +16,7 @@ class KNN_NearestNeighbor {
     public function __construct($csv_filename) {
         $this->data = [];
         $this->getAllNeighbors($csv_filename);
+        $this->alldata = [];
     }
 
     /**
@@ -46,8 +47,20 @@ class KNN_NearestNeighbor {
     }
 
     public function setXandY($song) {
-        $song->x = $this->transformer->functionX($song);
-        $song->y = $this->transformer->functionY($song);
+        //danceability
+        $song->x_dance = $this->transformer->functionX_danceability($song);
+        $song->y_dance= $this->transformer->functionY_danceability($song);
+
+        //appending for multiple X-Y comparisons 
+        //to measure similarity in dacenability, valence, AND energy
+
+        //valence
+        $song->x_valence = $this->transformer->functionX_valence($song);
+        $song->y_valence = $this->transformer->functionY_valence($song);
+
+        //energy
+        $song->x_energy = $this->transformer->functionX_energy($song);
+        $song->y_energy = $this->transformer->functionY_energy($song);
     }
 
     /**
@@ -56,7 +69,14 @@ class KNN_NearestNeighbor {
      * @param DataParsing_Song $song2
      */
     private function setEuclideanDistance($song1, $song2) {
-        $song2->euclidean_distance = sqrt(pow($song2->x - $song1->x, 2) + pow($song2->y - $song1->y, 2));
+        $song2->euclidean_distance_dance = sqrt(pow($song2->x_dance - $song1->x_dance, 2) 
+                                                + pow($song2->y_dance - $song1->y_dance, 2));
+        $song2->euclidean_distance_valence = sqrt(pow($song2->x_valence - $song1->x_valence, 2) 
+                                                + pow($song2->y_valence - $song1->y_valence, 2));
+        $song2->euclidean_distance_energy = sqrt(pow($song2->x_energy - $song1->x_energy, 2) 
+                                                + pow($song2->y_energy - $song1->y_energy, 2));
+       
+
     }
 
     /** 
@@ -77,13 +97,35 @@ class KNN_NearestNeighbor {
         foreach ($this->data as $song) {
             $this->setEuclideanDistance($this->song_to_be_classified, $song);
         }
-        // This will sort the data and 
-        usort($this->data, function($song1, $song2) {
-            if ($song1->euclidean_distance == $song2->euclidean_distance) {
+        // This will sort the data and store the ordered results in 3 arrays for
+        // danceability, valence, and energy 
+
+        $temp_dance = $this->data; 
+        $temp_valence = $this->data;
+        $temp_energy = $this->data;
+
+        usort($temp_dance, function($song1, $song2) {
+            if ($song1->euclidean_distance_dance == $song2->euclidean_distance_dance) {
                 return 0;
             }
-            return ($song1->euclidean_distance < $song2->euclidean_distance) ? -1 : 1;
+            return ($song1->euclidean_distance_dance < $song2->euclidean_distance_dance) ? -1 : 1;
         });
+
+        usort($temp_valence, function($song1, $song2) {
+            if ($song1->euclidean_distance_valence == $song2->euclidean_distance_valence) {
+                return 0;
+            }
+            return ($song1->euclidean_distance_valence < $song2->euclidean_distance_valence) ? -1 : 1;
+        });
+
+        usort($temp_energy, function($song1, $song2) {
+            if ($song1->euclidean_distance_energy == $song2->euclidean_distance_energy) {
+                return 0;
+            }
+            return ($song1->euclidean_distance_energy < $song2->euclidean_distance_energy) ? -1 : 1;
+        });
+
+        $this->alldata = array($temp_dance, $temp_valence, $temp_energy);
     }
 
     /**
@@ -92,6 +134,11 @@ class KNN_NearestNeighbor {
      * @param int $k
      */
     public function getKNearest($k) {
-        return array_slice($this->data, 0, $k);
+
+        $topdance = array_slice($this->alldata[0], 0, $k);
+        $topvalence = array_slice($this->alldata[1], 0, $k);
+        $topenergy = array_slice($this->alldata[2], 0, $k);
+
+        return(array($topdance, $topvalence, $topenergy));
     }
 }

@@ -13,6 +13,12 @@ class KNN_KNN {
     /** @var float */
     public $average_danceability;
 
+    /** @var float */
+    public $average_valence;
+
+    /** @var float */
+    public $average_energy;
+
     /** @var KNN_NearestNeighbor */
     public $nearest_neighbors;
 
@@ -51,11 +57,29 @@ class KNN_KNN {
 
     public function findTopK($k) {
         $this->k = $k;
-        $this->kNearest = $this->nearest_neighbors->getKNearest($k);
-        $total_danceability = 0;
-        foreach ($this->kNearest as $song) {
-            $total_danceability += $song->danceability; 
+        $this->kNearest_dance = $this->nearest_neighbors->getKNearest($k)[0];
+        $this->kNearest_valence = $this->nearest_neighbors->getKNearest($k)[1];
+        $this->kNearest_energy = $this->nearest_neighbors->getKNearest($k)[2];
+
+        $total_danceability = 0; $total_valence = 0; $total_energy =0;
+
+        foreach ($this->kNearest_dance as $song) {
+            $total_danceability += $song->danceability;
+            
         }
+
+        foreach ($this->kNearest_valence as $song) {
+            $total_valence += $song->valence;
+            
+        }
+
+        foreach ($this->kNearest_energy as $song) {
+            $total_energy += $song->energy;
+            
+        }
+
         $this->average_danceability = $total_danceability/$k;
+        $this->average_valence = $total_valence/$k;
+        $this->average_energy = $total_energy/$k;
     }
 }
