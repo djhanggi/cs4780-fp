@@ -1,27 +1,25 @@
 classdef Cluster < handle
-    
+
     properties
-        
+
         subclusters
         data
         description
-        
+
     end
-    
+
     methods (Static)
-        
-        function cluster = mergeClusters(cluster1, cluster2, description)
+
+        function cluster = mergeClusters(cluster1, cluster2)
             if nargin == 2
                 cluster = Cluster([cluster1 cluster2], '');
-                cluster.description = ...
-                    sprintf('Danceability: %f, Valence: %f, Energy: %f', ...
-                    cluster.averageDanceability(), cluster.averageValence(), ...
-                    cluster.averageEnergy());
-            elseif nargin == 3
-                cluster = Cluster([cluster1 cluster2], description);
+                cluster.description = '';
+%                     sprintf('Danceability: %f, Valence: %f, Energy: %f', ...
+%                     cluster.averageDanceability(), cluster.averageValence(), ...
+%                     cluster.averageEnergy());
             end
         end
-        
+
         function clusters = agglomerate(songs, links)
             nSongs = length(songs);
             clusters = Cluster.empty;
@@ -34,13 +32,13 @@ classdef Cluster < handle
                 cluster2 = clusters(links(l, 2));
                 clusters = [clusters Cluster.mergeClusters(cluster1, cluster2)];
             end
-            
+
         end
-        
+
     end
-    
+
     methods
-        
+
         function cluster = Cluster(subclusters, description)
             if nargin == 2
                 if length(subclusters) == 1
@@ -49,16 +47,16 @@ classdef Cluster < handle
                 else
                     cluster.subclusters = subclusters;
                     for c = subclusters
-                        cluster.data = [cluster.data subclusters.data];
+                        cluster.data = [cluster.data c.data];
                     end
                 end
                 cluster.description = description;
             end
         end
-        
+
         function cluster = convert2struct(self)
             if isempty(self.subclusters)
-                cluster = struct('name', self.description());
+                cluster = struct('name', self.description);
             else
                 for s = length(self.subclusters):-1:1
                     children{s} = self.subclusters(s).convert2struct();
@@ -66,7 +64,7 @@ classdef Cluster < handle
                 cluster = struct('name', self.description, 'children', children);
             end
         end
-        
+
         function danceability = averageDanceability(self)
             danceability = 0;
             for s = self.data
@@ -74,7 +72,7 @@ classdef Cluster < handle
             end
             danceability = danceability / length(self.data);
         end
-        
+
         function valence = averageValence(self)
             valence = 0;
             for s = self.data
@@ -82,7 +80,7 @@ classdef Cluster < handle
             end
             valence = valence / length(self.data);
         end
-        
+
         function energy = averageEnergy(self)
             energy = 0;
             for s = self.data
@@ -90,11 +88,11 @@ classdef Cluster < handle
             end
             energy = energy / length(self.data);
         end
-        
+
         function json = outputClusterJSON(self)
             json = savejson(self.convert2struct());
         end
-        
+
     end
-    
+
 end
