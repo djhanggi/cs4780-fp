@@ -57,11 +57,14 @@ classdef Cluster < handle
         end
         
         function cluster = convert2struct(self)
-            children = [];
-            for s = length(self.subclusters):-1:1
-                children(s) = self.subclusters(s).convert2struct();
+            if isempty(self.subclusters)
+                cluster = struct('name', self.description());
+            else
+                for s = length(self.subclusters):-1:1
+                    children{s} = self.subclusters(s).convert2struct();
+                end
+                cluster = struct('name', self.description, 'children', children);
             end
-            cluster = struct('name', self.description, 'children', children);
         end
         
         function danceability = averageDanceability(self)

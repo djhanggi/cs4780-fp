@@ -1,7 +1,7 @@
 addpath HAC/jsonlab
 
 songData = SongParser.parseSongData('DataParsing\csv\all_songs-modified.csv');
-songData = songData(1:300);
+songData = songData(1:40);
 
 dist = zeros(length(songData));
 for r = 1:length(songData)
