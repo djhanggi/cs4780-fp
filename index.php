@@ -8,8 +8,17 @@
         <script>
             $(function () {
 
+                $('#dendro_button').on('click', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#dendrogram').offset().top
+                    }, 400);
+                });
+
 
                 $('form').on('submit', function (e) {
+
+                    $('#results').css('display', 'none');
+                    $('#dendrogram').css('display', 'none');
 
                     $('#song_name').html("Song to be Classified: ");
                     $('#predicted_danceability').html("Predicted Danceability: ");
@@ -24,7 +33,9 @@
                     $('#actual_energy').html("Actual Energy: ");
                     $('#energy_prediction_error').html("Prediction Error: ");
 
-                    $('#top_k_songs').html("");
+                    $('#top_kdance_songs').html("");
+                    $('#top_kvalence_songs').html("");
+                    $('#top_kenergy_songs').html("");
                     e.preventDefault();
                     console.log($('form').serialize());
                     $.ajax({
@@ -62,18 +73,13 @@
                                 $('#top_kdance_songs').append("<th>Title</th>");
                                 $('#top_kdance_songs').append("<th>Artist</th>");
                                 $('#top_kdance_songs').append("<th>Danceability</th>");
-                                // $('#top_k_songs').append("<td>Valence</td>");
-                                // $('#top_k_songs').append("<td>Energy</td>");
                                 $('#top_kdance_songs').append("</tr></thead><tbody>");
 
                                 $.each(data.kNearest_dance, function(index, value) {
-                                    // $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
                                     $('#top_kdance_songs').append("<tr>");
                                     $('#top_kdance_songs').append("<td>" + value.title + "</td></br>");
                                     $('#top_kdance_songs').append("<td>" + value.artist_name + "</td></br>");
                                     $('#top_kdance_songs').append("<td>" + value.danceability + "</td></br>");
-                                    // $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
-                                    // $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
                                     $('#top_kdance_songs').append("</tr>");
                                 });
                                 $('#top_kdance_songs').append("</tbody></table>");
@@ -85,8 +91,6 @@
                                 $('#top_kvalence_songs').append("<th>Title</th>");
                                 $('#top_kvalence_songs').append("<th>Artist</th>");
                                 $('#top_kvalence_songs').append("<th>Valence</th>");
-                                // $('#top_k_songs').append("<td>Valence</td>");
-                                // $('#top_k_songs').append("<td>Energy</td>");
                                 $('#top_kvalence_songs').append("</tr></thead></tbody>");
 
                                 $.each(data.kNearest_valence, function(index, value) {
@@ -95,8 +99,6 @@
                                     $('#top_kvalence_songs').append("<td>" + value.title + "</td></br>");
                                     $('#top_kvalence_songs').append("<td>" + value.artist_name + "</td></br>");
                                     $('#top_kvalence_songs').append("<td>" + value.valence + "</td></br>");
-                                    // $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
-                                    // $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
                                     $('#top_kvalence_songs').append("</tr>");
                                 });
 
@@ -109,18 +111,13 @@
                                 $('#top_kenergy_songs').append("<th>Title</th>");
                                 $('#top_kenergy_songs').append("<th>Artist</th>");
                                 $('#top_kenergy_songs').append("<th>Energy</th>");
-                                // $('#top_k_songs').append("<td>Valence</td>");
-                                // $('#top_k_songs').append("<td>Energy</td>");
                                 $('#top_kenergy_songs').append("</tr></thead><tbody>");
 
                                 $.each(data.kNearest_energy, function(index, value) {
-                                    // $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
                                     $('#top_kenergy_songs').append("<tr>");
                                     $('#top_kenergy_songs').append("<td>" + value.title + "</td></br>");
                                     $('#top_kenergy_songs').append("<td>" + value.artist_name + "</td></br>");
                                     $('#top_kenergy_songs').append("<td>" + value.energy + "</td></br>");
-                                    // $('#top_k_songs').append("<td>" + value.valence + "</td></br>");
-                                    // $('#top_k_songs').append("<td>" + value.energy + "</td></br>");
                                     $('#top_kenergy_songs').append("</tr>");
                                 });
 
@@ -132,7 +129,7 @@
 
                                 $('html, body').animate({
                                     scrollTop: $('#results').offset().top
-                                }, 1000);
+                                }, 800);
                             }
                         }
                     });
@@ -159,17 +156,16 @@
      
         <div id="results" class="panel" style="display:none">
             <div class="content">
-                <div>
-                    <h1>Results</h1>
-                    <h3 id="song_name">Song to be Classified: </h3>
+                <h1 id="song_name">Song to be Classified: </h1>
+                <div class="three_column">
                     <h3 id="predicted_danceability">Predicted Danceability: </h3>
                     <h3 id="actual_danceability">Actual Danceability: </h3>
-                    <h3 id="prediction_error">Prediction Error: </h3>
+                    <h3 id="dance_prediction_error">Prediction Error: </h3>
                     <div id="top_kdance_songs">
                     </div>
                 </div>
 
-                <div>
+                <div class="three_column">
                     <h3 id="predicted_valence">Predicted Danceability: </h3>
                     <h3 id="actual_valence">Actual Danceability: </h3>
                     <h3 id="valence_prediction_error">Prediction Error: </h3>
@@ -177,14 +173,14 @@
                     </div>
                 </div>
 
-               <div>
+               <div class="three_column">
                     <h3 id="predicted_energy">Predicted Danceability: </h3>
                     <h3 id="actual_energy">Actual Danceability: </h3>
                     <h3 id="energy_prediction_error">Prediction Error: </h3>
                     <div id="top_kenergy_songs">
                     </div>
                 </div>
-
+                <button id="dendro_button">See the Sub-Genre Classification Dendrogram</button>
             </div>
         </div>
         <div id="dendrogram" class="panel" style="display:none">

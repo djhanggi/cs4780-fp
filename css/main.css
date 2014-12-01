@@ -53,8 +53,9 @@
 
 #results .content {
     padding: 30px;
-   
+    position: relative;
 }
+
  /*veena*/
 #results .content div{
     display:inline-block;
@@ -71,25 +72,31 @@
 
 
 #results .content div #top_kdance_songs > td{
-    width:200px;
-    padding-right:5px;
+    /*width:110px;*/
+    padding-right:2px;
 
 }
 
 #results .content div #top_kvalence_songs > td{
-    width:200px;
-    padding-right:5px;
+    /*width:110px;*/
+    padding-right:2px;
 
 }
 
 #results .content div #top_kenergy_songs > td{
-    max-width:200px;
-    padding-right:5px;
+    /*max-width:110px;*/
+    padding-right:2px;
 
 }
 
 #results h2 {
     font-size:13px;
+}
+
+.three_column {
+    max-width: 30%;
+    margin-right: 3%;
+    display: inline-block;
 }
 
 /*end veena*/
@@ -126,7 +133,6 @@ html, body {
 }
 
 h1 {
-    /*font-weight: 100;*/
     padding: 20px;
     font-family: MoonOnMars;
     font-size: 300%;
@@ -176,6 +182,14 @@ button {
     margin-top: 10px;
     font-family: MoonOnMars, sans-serif;
 }
+
+    #dendro_button {
+        left: 12.5%;
+        right: 12.5%;
+        position: absolute;
+        bottom: 40px;
+
+    }
 
     button:hover{
         background-color: white;

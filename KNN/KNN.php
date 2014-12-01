@@ -44,14 +44,17 @@ class KNN_KNN {
         $songName = rawurlencode($songName);
         $artistName = rawurlencode($artistName);
         $searchQuery = "http://developer.echonest.com/api/v4/song/search?api_key=" . 
-            DataParsing_APIKeys::CURRENT_KEY . "&format=json&results=1&artist=" . 
+            DataParsing_APIKeys::CURRENT_KEY . "&format=json&results=5&artist=" . 
             $artistName . "&title=" . $songName;
         // echo $searchQuery;
         $json = @file_get_contents($searchQuery);
         $response = json_decode($json,true);
         if ($response["response"]["songs"]) {
-            $songId = $response["response"]["songs"][0]["id"];
-            $this->tryNewSong($songId);
+            $songIds = array_column($response["response"]["songs"],"id");
+            $song = DataParsing_Song::withIDs($songIds);
+            // var_dump($song);
+            $this->song_to_be_classified = $song;
+            $this->nearest_neighbors->sortSongs($song);
         } 
     }
 

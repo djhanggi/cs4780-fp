@@ -95,6 +95,56 @@ class DataParsing_Song {
     }
 
     /**
+     * Queries EchoNest API to retrieve song data
+     * @param int $songId
+     */
+    public static function withIDs($songIds) {
+        $temp = [];
+        foreach ($songIds as $songId) {
+
+            $instance = new self();
+
+            $instance->songId = $songId;
+            $getURL = $instance->createURL($songId);
+            $json = @file_get_contents($getURL); //suppress any warnings. If we fail, just wait a minute
+            while ($json === FALSE) {
+                echo "\nwaiting\n";
+                // Request failed, probably due to rate limit. Wait for a minute (Echo Nest has per-minute limits) and try again
+                sleep(60);
+                $json = @file_get_contents($getURL);
+            }
+            $response = json_decode($json,true);
+            $instance->processGETResponse($response);
+            $temp[] = $instance;
+        }
+        $instance = new self();
+
+        $num_songs = count($songIds);
+        for ($i=0; $i < $num_songs; $i++) { 
+            $instance->songId = $temp[0]->songId; // whatever
+            $instance->title = $temp[0]->title;
+            $instance->artist_name = $temp[0]->artist_name;
+            $instance->artist_id = $temp[0]->artist_id;
+            $instance->song_type = $temp[0]->song_type;
+            $instance->key = $temp[0]->key;
+            $instance->energy = array_sum(array_map(create_function('$song', 'return $song->energy;'), $temp))/$num_songs;
+            $instance->liveness = array_sum(array_map(create_function('$song', 'return $song->liveness;'), $temp))/$num_songs;
+            $instance->tempo = array_sum(array_map(create_function('$song', 'return $song->tempo;'), $temp))/$num_songs;
+            $instance->speechiness = array_sum(array_map(create_function('$song', 'return $song->speechiness;'), $temp))/$num_songs;
+            $instance->acousticness = array_sum(array_map(create_function('$song', 'return $song->acousticness;'), $temp))/$num_songs;
+            $instance->instrumentalness = array_sum(array_map(create_function('$song', 'return $song->instrumentalness;'), $temp))/$num_songs;
+            $instance->mode = $temp[0]->mode;
+            $instance->time_signature = $temp[0]->time_signature;
+            $instance->duration = $temp[0]->duration;
+            $instance->loudness = array_sum(array_map(create_function('$song', 'return $song->loudness;'), $temp))/$num_songs;
+            $instance->valence = array_sum(array_map(create_function('$song', 'return $song->valence;'), $temp))/$num_songs;
+            $instance->danceability = array_sum(array_map(create_function('$song', 'return $song->danceability;'), $temp))/$num_songs;
+        }
+
+        return $instance;
+    }
+
+    /**
      * Creates DataParsing_Song object from CSV line
      * @param array $songString
      */
