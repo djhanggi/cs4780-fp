@@ -8,7 +8,7 @@ class KNN_KNN {
     public $song_to_be_classified;
 
     /** @var DataParsing_Song[] */
-    public $kNearest;
+    // public $kNearest;
 
     /** @var float */
     public $average_danceability;
@@ -33,8 +33,13 @@ class KNN_KNN {
         $this->nearest_neighbors->setTransformer($transformer);
         $this->nearest_neighbors->setAllXandY();
     }
+
+    public function tryNewSong($song) {
+        $this->song_to_be_classified = $song;
+        $this->nearest_neighbors->sortSongs($song);
+    }
     
-    public function tryNewSong($songId) {
+    public function tryNewSongId($songId) {
         $song = DataParsing_Song::withID($songId);
         $this->song_to_be_classified = $song;
         $this->nearest_neighbors->sortSongs($song);
@@ -52,7 +57,6 @@ class KNN_KNN {
         if ($response["response"]["songs"]) {
             $songIds = array_column($response["response"]["songs"],"id");
             $song = DataParsing_Song::withIDs($songIds);
-            // var_dump($song);
             $this->song_to_be_classified = $song;
             $this->nearest_neighbors->sortSongs($song);
         } 
@@ -60,9 +64,10 @@ class KNN_KNN {
 
     public function findTopK($k) {
         $this->k = $k;
-        $this->kNearest_dance = $this->nearest_neighbors->getKNearest($k)[0];
-        $this->kNearest_valence = $this->nearest_neighbors->getKNearest($k)[1];
-        $this->kNearest_energy = $this->nearest_neighbors->getKNearest($k)[2];
+        $kNearest = $this->nearest_neighbors->getKNearest($k);
+        $this->kNearest_dance = $kNearest[0];
+        $this->kNearest_valence = $kNearest[1];
+        $this->kNearest_energy = $kNearest[2];
 
         $total_danceability = 0; $total_valence = 0; $total_energy =0;
 

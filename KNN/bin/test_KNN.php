@@ -9,7 +9,7 @@ $transformer = new KNN_VeenasRTransformation();
 
 $KNN = new KNN_KNN(__DIR__."/../../DataParsing/csv/all_songs.csv", $transformer);
 $KNN->searchAndBegin('tik tok', 'ke$ha');
-// $KNN->tryNewSong($songId);
+// $KNN->tryNewSongId($songId);
 
 $KNN->findTopK(15);
 // echo "\n\n\n\n\n\nFor k=15\n\n\n\n\n\n";
