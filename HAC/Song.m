@@ -16,6 +16,15 @@ classdef Song < handle
             dist = sqrt(X^2 + Y^2);
         end
         
+        function dist = distanceMatrix(songs)
+            dist = zeros(length(songs));
+            for r = 1:length(songs)
+                for c = r+1:length(songs)
+                    dist(r, c) = Song.distance(songs(r), songs(c));
+                    dist(c, r) = Song.distance(songs(r), songs(c));
+                end
+            end
+        end
     end
     
     methods

@@ -1,20 +1,23 @@
 classdef SongParser < handle
-    
+
     methods (Static)
-        
+
         function songData = parseSongData(songDataFile)
-            songTable = readtable(songDataFile);
-            songCellA = table2cell(songTable);
+            fid = fopen(songDataFile);
             songData = Song.empty;
-            [nSongs, ~] = size(songCellA);
-            for s = nSongs:-1:1
-                title = songCellA{s,1};
-                artist_name = songCellA{s,2};
-                features = SongParser.convertFeatures(cell2mat(songCellA(s,3:end)));
-                songData(s) = Song(title, artist_name, features);
+            [~] = fgetl(fid); % header
+            while ~feof(fid)
+                line = fgetl(fid);
+                fields = textscan(line, '%s', 'Delimiter', ',');
+                fields = fields{1};
+                title = fields{1};
+                artist_name = fields{2};
+                features = SongParser.convertFeatures(str2double(fields(3:end)));
+                songData = [songData Song(title, artist_name, features)];
             end
+            fclose(fid);
         end
-        
+
         function features = convertFeatures(rawFeatures)
             key = rawFeatures(1);
             energy = rawFeatures(2);
@@ -36,7 +39,7 @@ classdef SongParser < handle
                 duration, 'loudness', loudness, 'valence', valence, ...
                 'danceability', danceability);
         end
-        
+
     end
-    
+
 end
