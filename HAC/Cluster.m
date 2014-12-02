@@ -99,8 +99,8 @@ classdef Cluster < handle
             energy = energy / length(self.data);
         end
         
-        function json = outputClusterJSON(self)
-            json = savejson(self.convert2struct());
+        function JSON = outputClusterJSON(self)
+            JSON = json.dump(self.convert2struct());
         end
         
     end
