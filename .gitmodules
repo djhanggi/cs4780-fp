@@ -1,3 +1,3 @@
 [submodule "clustering/d3Network"]
 	path = clustering/d3Network
-	url = git@github.com:christophergandrud/d3Network.git
+	url = https://www.github.com/christophergandrud/d3Network.git
