@@ -28,7 +28,6 @@
 }
 
 #dendro_img {
-    background-image: url('../images/dendrogram.png');
     height: 50%;
     width: 50%;
     background-size: cover;
@@ -195,4 +194,12 @@ button {
         background-color: white;
         color: rgb(159, 76, 108);
     }
+
+iframe{
+    margin:0 auto;
+    text-align:center;
+    height:200px;
+    border-color:white;
+    border-style:solid;
+}
 
