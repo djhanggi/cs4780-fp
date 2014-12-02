@@ -1,7 +1,7 @@
-addpath jsonlab
+addpath matlab-json/
+json.startup
 
 songData = SongParser.parseSongData('../DataParsing/csv/all_songs-modified.csv');
-songData = songData(1:800);
 
 dist = Song.distanceMatrix(songData);
 squareDist = squareform(dist);
