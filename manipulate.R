@@ -24,27 +24,23 @@ nodance = merge(tdance4_5,nodance,by=names(tdance0_1), all = TRUE)
 dance = merge(yd, nodance, by = names(yd), all = TRUE)
 
 attach(dance)
-plot(-3.279225e-06*valence*I(tempo^2) +  -8.160651e-04*energy*I(loudness^2) +  
+plot(-3.279225e-06*valence*I(tempo^2) +  -8.160651e-04*energy*I(loudness^2) +
        3.218223e-01*acousticness*I(energy^2)+-3.279225e-06*liveness*speechiness
      +3.793979e-04*tempo*energy+-7.492498e-03*loudness*acousticness
      + 7.001209e-02*instrumentalness*valence+ -6.132415e-04*valence*loudness
      +1.359087e-02*energy*loudness*I(valence^2), valence, pch =16)
 
-plot(-3.279225e-06*valence*I(tempo^2) +  -8.160651e-04*energy*I(loudness^2) +  
+plot(-3.279225e-06*valence*I(tempo^2) +  -8.160651e-04*energy*I(loudness^2) +
        3.218223e-01*acousticness*I(energy^2)+-3.279225e-06*liveness*speechiness
      +3.793979e-04*tempo*energy+-7.492498e-03*loudness*acousticness
      + 7.001209e-02*instrumentalness*valence+ -6.132415e-04*valence*loudness
      +1.359087e-02*energy*loudness*I(valence^2), danceability, pch =16)
 
-plot((-3.126570 * 10^-1)*acousticness 
+plot((-3.126570 * 10^-1)*acousticness
   +  (-7.503000 * 10^-4) * tempo
      +   (1.719260 * 10^-2) * loudness
      +  (-1.399756 * 10^-1) * valence
-     +   (2.950410 * 10^-2) * danceability 
-     +  (-2.433880 * 10^-1) * speechiness 
+     +   (2.950410 * 10^-2) * danceability
+     +  (-2.433880 * 10^-1) * speechiness
      +   (1.868210 * 10^-2) * loudness * danceability
      , energy, pch = 16)
-
-
-
-
