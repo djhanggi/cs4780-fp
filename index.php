@@ -140,13 +140,6 @@
         </script>
     </head>
     <body>
-    <?php 
-        $toUTF = utf8_encode( file_get_contents ("HAC/all-songs-clustering-single.json") );
-        $myfile = fopen("HAC/testfile.json", "w");
-        fwrite($myfile, $toUTF);
-        fclose($myfile);
-
-    ?>
         <div id="classifier" class="panel">
             <div class="panel_content">
                 <h1>Do You Want to Dance?</h1>
@@ -196,11 +189,6 @@
                 <div id="dendro_img">
                     <iframe src = "clustering/dendo.html" width='1000' height='100' style="height: 400px;"></iframe>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lorem et massa fringilla tempus. Aenean convallis, sem eget tristique aliquam, metus diam fringilla metus, vel tincidunt dolor augue in turpis. Vivamus elementum mi eu imperdiet porttitor. Nam laoreet turpis massa, sit amet gravida nisi sagittis at. Nullam aliquet cursus posuere. Vivamus efficitur felis vitae lacus pellentesque, a placerat ipsum faucibus. Aliquam non lacus eu nulla posuere auctor. Aliquam at maximus ante. Nunc ac dapibus massa, vitae condimentum leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nisl odio, convallis faucibus ornare nec, pharetra id ante. Nulla suscipit dui magna. Cras libero enim, vehicula vel magna id, molestie tempus orci. Quisque nunc neque, congue at diam vitae, commodo maximus ipsum.</p>
-           
-
-
-
             </div>
         </div>
         <div id="credits" class="panel">
