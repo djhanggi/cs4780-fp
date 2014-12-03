@@ -9,7 +9,6 @@ require_once __DIR__."/../../Loader.php";
  * $transformer
  */
 
-$k = 15;
 $test_csv_file = __DIR__."/../../DataParsing/csv/randomSong_data.csv";
 $train_csv_file = __DIR__."/../../DataParsing/csv/all_songs.csv";
 $transformer = new KNN_VeenasRTransformation();
@@ -29,11 +28,12 @@ while (($line = fgetcsv($file)) !== FALSE) {
 
 $KNN = new KNN_KNN($train_csv_file, $transformer);
 
-$total_prediction_error_dance   = 0;
-$total_prediction_error_valence = 0;
-$total_prediction_error_energy  = 0;
 
-foreach ($test_songs as $test_song) {
+for ($k = 1; $k <= 25; $k++) {
+	$total_prediction_error_dance   = 0;
+	$total_prediction_error_valence = 0;
+	$total_prediction_error_energy  = 0;
+   foreach ($test_songs as $test_song) {
     $KNN->nearest_neighbors->sortSongs($test_song);
     $KNN->findTopK($k);
     $total_prediction_error_dance   += abs($test_song->danceability - $KNN->average_danceability);
@@ -46,7 +46,10 @@ $average_prediction_error_valence = $total_prediction_error_valence/count($test_
 $average_prediction_error_energy  = $total_prediction_error_energy/count($test_songs);
 
 
-
+echo  " ---------------------". $k . " ---------------------\n";
 echo "average danceability prediction error: $average_prediction_error_dance\n";
 echo "average valence prediction error: $average_prediction_error_valence\n";
 echo "average energy prediction error: $average_prediction_error_energy\n";
+echo "<br> <br>";
+
+} 

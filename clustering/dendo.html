@@ -94,24 +94,60 @@
 
 node.on("mouseover", function (d) {
                 d3.select(this).select('text')
+                 .call(wrap, 50)
                 .text(function(d){
                     var textToFill = d.name + getChildren(d);
-     
                     return textToFill;
-                }).style("color", "#FFF")
+                })
                
                
 });
 
-node.on("mouseout", function (d) {
-                d3.select(this).select('text')
-                .text(function(d){
-                    return "";
-                })
+// node.on("mouseout", function (d) {
+//                 d3.select(this).select('text')
+//                 .text(function(d){
+//                     return "";
+//                 })
                
                
                
-});
+// });
+
+function wrap(text, width) {
+    text.each(function (d) {
+        var text = d3.select(this),
+            words = d.name.split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            x = d.x,
+            y = d.y,
+            dy = 0, //parseFloat(text.attr("dy")),
+            tspan = text.text(null)
+                        .append("tspan")
+                        .attr("x", x)
+                        .attr("y", y)
+                        .attr("dy", dy + "em");
+              alert(tspan.attr("dy"));
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                            .text(word);
+                  alert(tspan.attr("x") + " " + tspan.attr("y") + " " + tspan.attr(dy));
+            }
+
+        }
+    });
+}
   
   d3.select(self.frameElement).style("height", 450 + "px");
 

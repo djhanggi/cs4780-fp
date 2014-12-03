@@ -1,4 +1,4 @@
-setwd("Desktop/CS478final")
+setwd("~/Desktop/CS478final/DataParsing/csv")
 
 tdance0_1 = read.csv("dance_0to1_data.csv", header = TRUE)
 tdance1_2 = read.csv("dance_1to2_data.csv", header = TRUE)
@@ -23,7 +23,6 @@ nodance = merge(tdance4_5,nodance,by=names(tdance0_1), all = TRUE)
 
 dance = merge(yd, nodance, by = names(yd), all = TRUE)
 
-<<<<<<< Updated upstream
 attach(dance)
 plot(-3.279225e-06*valence*I(tempo^2) +  -8.160651e-04*energy*I(loudness^2) +
 =======
@@ -43,7 +42,6 @@ for(i in 1:length(dance$instrumentalness)){
 write.csv(file="no_na_songs.csv", x=dance)
 
 plot(-3.279225e-06*valence*I(tempo^2) +  -8.160651e-04*energy*I(loudness^2) +  
->>>>>>> Stashed changes
        3.218223e-01*acousticness*I(energy^2)+-3.279225e-06*liveness*speechiness
      +3.793979e-04*tempo*energy+-7.492498e-03*loudness*acousticness
      + 7.001209e-02*instrumentalness*valence+ -6.132415e-04*valence*loudness
