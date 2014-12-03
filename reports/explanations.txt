@@ -1,0 +1,18 @@
+Hierarchical Agglomerative Clustering
+
+Our kNN implementation in this research project was used to predict musical traits
+of songs based on the probable hypothesis that songs within the same genre have similar
+musical properties (danceability, valence, tempo, etc.) To further correlate the
+relevance of musical features in genrification, we used hierarchical agglomerative
+clustering to study how genres emerge in our music data set. Specifically, we sought
+to examine whether the clustering corresponds to well-defined (classified by real-world
+musical experts) genres, and whether or not songs' nearest neighbors (in the kNN
+implementation) are contained with the clustering found via HAC. This would demonstrate
+the importance of particular features in the data set, and would indicate if
+genres are defined by a range of musical features or whether features are sparse
+throughout the feature space.
+
+Our HAC implementation in MATLAB used the single-link (minimum distance), complete-link
+(maximum distance), and average-link (average distance) methods to cluster our
+song data set. The distance metric we used was Euclidean distance applied to
+the song's VT transformation and valence.
