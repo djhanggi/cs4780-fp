@@ -1,4 +1,5 @@
 Hierarchical Agglomerative Clustering
+=====================================
 
 Our kNN implementation in this research project was used to predict musical traits
 of songs based on the probable hypothesis that songs within the same genre have similar
@@ -16,3 +17,29 @@ Our HAC implementation in MATLAB used the single-link (minimum distance), comple
 (maximum distance), and average-link (average distance) methods to cluster our
 song data set. The distance metric we used was Euclidean distance applied to
 the song's VT transformation and valence.
+
+
+Connections between HAC and KNN
+===============================
+
+We added the HAC portion of this project for several reasons; to determine the
+connection between musical features (in our data space) and genre; to compare
+supervised and unsupervised methods in our classification; to determine how our
+kNN and HAC algorithms compare while using the VT transformation; and to see
+if these algorithms provide similar insights.
+
+Our primary conclusion from the results of both algorithms is that there is a
+feature not being considered in song classification. For some songs, there is not
+a strong correspondence between how they are clustered and how they are classified
+via kNN. We believe the most significant missing feature is lyrical content, which
+could aid in the classification of songs; however, this feature is difficult to
+integrate into our current feature representation as lyrics are common to many different
+genres. Lyrical content would have to be considered alongside musical features to
+be able to segregate genres.
+
+
+Issues
+======
+* Nonreliable data
+* Echo Nest does not have reliable definitions
+* Echo Nest does not have complete data
