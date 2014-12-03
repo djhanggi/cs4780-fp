@@ -77,7 +77,7 @@ Analysis
         Neighbors algorithm.
 
         In an effort to measure how well we quantify the attributes danceability, valence, and 
-        energy, we explored HAC clustering to try to locate genres and subgenres (a natural way 
+        energy, we explored HAC to try to locate genres and subgenres (a natural way 
         to group similar songs for humans) in our dataset using a song's danceability, valence, 
         and energy to see if there exists some correlation between the subjective attributes that 
         we mapped to numerical values (danceability, valence, and energy), and another subjective 

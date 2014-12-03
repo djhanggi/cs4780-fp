@@ -45,7 +45,7 @@ class KNN_KNN {
         $this->nearest_neighbors->sortSongs($song);
     }
 
-    public function searchAndBegin($songName, $artistName) {
+    public function searchAndBegin($songName, $artistName, $without_transformation = False) {
         $songName = rawurlencode($songName);
         $artistName = rawurlencode($artistName);
         $searchQuery = "http://developer.echonest.com/api/v4/song/search?api_key=" . 
@@ -58,7 +58,7 @@ class KNN_KNN {
             $songIds = array_column($response["response"]["songs"],"id");
             $song = DataParsing_Song::withIDs($songIds);
             $this->song_to_be_classified = $song;
-            $this->nearest_neighbors->sortSongs($song);
+            $this->nearest_neighbors->sortSongs($song, $without_transformation);
         } 
     }
 

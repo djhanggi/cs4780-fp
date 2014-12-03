@@ -75,8 +75,56 @@ class KNN_NearestNeighbor {
                                                 + pow($song2->y_valence - $song1->y_valence, 2));
         $song2->euclidean_distance_energy = sqrt(pow($song2->x_energy - $song1->x_energy, 2) 
                                                 + pow($song2->y_energy - $song1->y_energy, 2));
-       
+    }
 
+    private function setEuclideanDistance8Attributes($song1, $song2) {
+        $valence1          = $song1->valence;
+        $tempo1            = $song1->tempo;
+        $energy1           = $song1->energy;
+        $liveness1         = $song1->liveness;
+        $speechiness1      = $song1->speechiness;
+        $loudness1         = $song1->loudness;
+        $acousticness1     = $song1->acousticness;
+        $instrumentalness1 = $song1->instrumentalness;
+        $danceability1     = $song1->danceability;
+
+        $valence2          = $song2->valence;
+        $tempo2            = $song2->tempo;
+        $energy2           = $song2->energy;
+        $liveness2         = $song2->liveness;
+        $speechiness2      = $song2->speechiness;
+        $loudness2         = $song2->loudness;
+        $acousticness2     = $song2->acousticness;
+        $instrumentalness2 = $song2->instrumentalness;
+        $danceability2     = $song2->danceability;
+
+
+        $song2->euclidean_distance_dance =    pow($valence2 - $valence1, 2)
+                                            + pow($tempo2 - $tempo1, 2)
+                                            + pow($energy2 - $energy1, 2)
+                                            + pow($liveness2 - $liveness1, 2)
+                                            + pow($speechiness2 - $speechiness1, 2)
+                                            + pow($loudness2 - $loudness1, 2)
+                                            + pow($acousticness2 - $acousticness1, 2)
+                                            + pow($instrumentalness2 - $instrumentalness1, 2);
+
+        $song2->euclidean_distance_valence =  pow($tempo2 - $tempo1, 2)
+                                            + pow($energy2 - $energy1, 2)
+                                            + pow($liveness2 - $liveness1, 2)
+                                            + pow($speechiness2 - $speechiness1, 2)
+                                            + pow($loudness2 - $loudness1, 2)
+                                            + pow($acousticness2 - $acousticness1, 2)
+                                            + pow($instrumentalness2 - $instrumentalness1, 2)
+                                            + pow($danceability2 - $danceability1, 2);
+
+        $song2->euclidean_distance_energy =   pow($valence2 - $valence1, 2)
+                                            + pow($tempo2 - $tempo1, 2)
+                                            + pow($liveness2 - $liveness1, 2)
+                                            + pow($speechiness2 - $speechiness1, 2)
+                                            + pow($loudness2 - $loudness1, 2)
+                                            + pow($acousticness2 - $acousticness1, 2)
+                                            + pow($instrumentalness2 - $instrumentalness1, 2)
+                                            + pow($danceability2 - $danceability1, 2);
     }
 
     /** 
@@ -91,11 +139,15 @@ class KNN_NearestNeighbor {
      * song that is to be classified.
      * @param DataParsing_Song $song_to_be_classified
      */
-    public function sortSongs($song_to_be_classified) {
+    public function sortSongs($song_to_be_classified, $without_transformation = False) {
         $this->song_to_be_classified = $song_to_be_classified;
-        $this->setXandY($this->song_to_be_classified);
         foreach ($this->data as $song) {
-            $this->setEuclideanDistance($this->song_to_be_classified, $song);
+            if ($without_transformation) {
+                $this->setEuclideanDistance8Attributes($this->song_to_be_classified, $song);
+            } else {
+                $this->setXandY($this->song_to_be_classified);
+                $this->setEuclideanDistance($this->song_to_be_classified, $song);
+            }
         }
         // This will sort the data and store the ordered results in 3 arrays for
         // danceability, valence, and energy 

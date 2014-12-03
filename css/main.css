@@ -137,6 +137,10 @@ h1 {
     font-size: 300%;
 }
 
+.panel_header {
+    text-align: center;
+}
+
 #classifier .panel_content {
     height: 300px;
     width: 900px;

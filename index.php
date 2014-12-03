@@ -142,7 +142,7 @@
     <body>
         <div id="classifier" class="panel">
             <div class="panel_content">
-                <h1>Do You Want to Dance?</h1>
+                <div class="panel_header"><h1>Do You Want to Dance?</h1></div>
                 <form action="index.php" method="POST">
                     <input type="text" name="song_name" placeholder="Song Name">
                     <input type="text" name="artist_name" placeholder="Artist Name">
@@ -156,7 +156,7 @@
      
         <div id="results" class="panel" style="display:none">
             <div class="content">
-                <h1 id="song_name">Song to be Classified: </h1>
+                <div class="panel_header"><h1 id="song_name">Song to be Classified: </h1></div>
                 <div class="three_column">
                     <h3 id="predicted_danceability">Predicted Danceability: </h3>
                     <h3 id="actual_danceability">Actual Danceability: </h3>
@@ -185,19 +185,46 @@
         </div>
         <div id="dendrogram" class="panel" style="display:none">
             <div class="content">
-                <h1>K-Means Clustering Dendrogram</h1>
+                <div class="panel_header"><h1>Hierarchical Agglomerative Clustering Dendrogram</h1></div>
                 <div id="dendro_img">
                     <iframe src = "clustering/dendo.html" width='1000' height='100' style="height: 400px;"></iframe>
                 </div>
             </div>
         </div>
         <div id="credits" class="panel">
-            <h1>Explanation and Things</h1>
+            <div class="panel_header"><h1>Project Motivation and Definition</h1></div>
             <div id="explanation">
-                <h2>If we get the <a href="http://christophergandrud.github.io/d3Network/#ClusterDendro" target="_blank">dendrogram</a> working for the clustering, that will go here.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lorem et massa fringilla tempus. Aenean convallis, sem eget tristique aliquam, metus diam fringilla metus, vel tincidunt dolor augue in turpis. Vivamus elementum mi eu imperdiet porttitor. Nam laoreet turpis massa, sit amet gravida nisi sagittis at. Nullam aliquet cursus posuere. Vivamus efficitur felis vitae lacus pellentesque, a placerat ipsum faucibus. Aliquam non lacus eu nulla posuere auctor. Aliquam at maximus ante. Nunc ac dapibus massa, vitae condimentum leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nisl odio, convallis faucibus ornare nec, pharetra id ante. Nulla suscipit dui magna. Cras libero enim, vehicula vel magna id, molestie tempus orci. Quisque nunc neque, congue at diam vitae, commodo maximus ipsum.</p>
-                <p>Aliquam viverra lorem venenatis, vestibulum mi a, sollicitudin justo. Nullam in semper elit. Praesent odio sem, ornare vitae tristique quis, viverra quis lacus. Aliquam eget pulvinar velit. Quisque eu diam finibus, finibus nunc ut, commodo nisl. Duis in aliquet libero. Sed elementum velit condimentum libero bibendum, dictum gravida dui rutrum. Integer ultricies velit at nulla sagittis congue. Etiam non sapien dolor. Suspendisse ullamcorper imperdiet diam. Integer erat nibh, viverra vel molestie non, fermentum eget erat. Etiam lobortis aliquam libero non fermentum. Sed tincidunt ipsum quis erat viverra lacinia. Praesent mollis eros eu mi gravida lacinia.</p>
-                <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla at commodo mi. Pellentesque sit amet convallis neque. Nulla vel dui elementum, cursus augue vitae, ultrices magna. Curabitur vestibulum quis augue sit amet fringilla. Morbi egestas, erat ac gravida ornare, purus nisi ullamcorper est, malesuada semper orci nunc sit amet erat. Sed facilisis purus elit, quis aliquet metus cursus quis.</p>
+                <p>
+                    Music can be quantified numerically in terms of tempo, encoded chord progressions, lyric 
+                    term frequencies, but how much can we learn from cold numbers when the appeal of music to 
+                    humans is all in things that are much more difficult to numerically quantify? Knowing the 
+                    tempo and duration of a song does not allow us to understand how a human might perceive the 
+                    song because those are not the most commonly used attributes a human focuses on when 
+                    listening to a song.
+                </p>
+                <p>
+                    Attributes that are much more subjective (and therefore difficult to quantify) tend to be 
+                    more human understandable. Knowing how much a song might make you want to dance, or the 
+                    energy of that song helps us better understand what the song might sound like or the impact 
+                    it will have on us.
+                </p>
+                <p>
+                    In this project, we explore the Echo Nest API, which provides machine-learned numerical 
+                    values for a song's danceability, valence, and energy. The Echo Nest developers do not 
+                    define any of these attributes (we only have their name to use to derive their meaning), 
+                    and do not expose how the values were determined. To better understand how these values 
+                    might be derived and defined, we search for a transformative function that defines a 
+                    correlation between those values that allow us to predict them using the k-Nearest 
+                    Neighbors algorithm.
+                </p>
+                <p>
+                    In an effort to measure how well we quantify the attributes danceability, valence, and 
+                    energy, we explored Hierarchical Agglomerative Clustering to try to locate genres and subgenres (a natural way 
+                    to group similar songs for humans) in our dataset using a song's danceability, valence, 
+                    and energy to see if there exists some correlation between the subjective attributes that 
+                    we mapped to numerical values (danceability, valence, and energy), and another subjective 
+                    attribute (genre).
+                </p>
             </div>
         </div>
     </body>
