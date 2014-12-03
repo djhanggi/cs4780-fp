@@ -1,42 +1,110 @@
-Hierarchical Agglomerative Clustering
-=====================================
+Motivation
+=======================
+    Music can be quantified numerically in terms of tempo, encoded chord progressions, lyric 
+    term frequencies, but how much can we learn from cold numbers when the appeal of music to 
+    humans is all in things that are much more difficult to numerically quantify? Knowing the 
+    tempo and duration of a song does not allow us to understand how a human might perceive the 
+    song because those are not the most commonly used attributes a human focuses on when 
+    listening to a song.
 
-Our kNN implementation in this research project was used to predict musical traits
-of songs based on the probable hypothesis that songs within the same genre have similar
-musical properties (danceability, valence, tempo, etc.) To further correlate the
-relevance of musical features in genrification, we used hierarchical agglomerative
-clustering to study how genres emerge in our music data set. Specifically, we sought
-to examine whether the clustering corresponds to well-defined (classified by real-world
-musical experts) genres, and whether or not songs' nearest neighbors (in the kNN
-implementation) are contained with the clustering found via HAC. This would demonstrate
-the importance of particular features in the data set, and would indicate if
-genres are defined by a range of musical features or whether features are sparse
-throughout the feature space.
+    Attributes that are much more subjective (and therefore difficult to quantify) tend to be 
+    more human understandable. Knowing how much a song might make you want to dance, or the 
+    energy of that song helps us better understand what the song might sound like or the impact 
+    it will have on us.
 
-Our HAC implementation in MATLAB used the single-link (minimum distance), complete-link
-(maximum distance), and average-link (average distance) methods to cluster our
-song data set. The distance metric we used was Euclidean distance applied to
-the song's VT transformation and valence.
+Problem Statement
+=======================
+    Questions:
+    Is there a correlation between valence, energy, and danceability?
 
+    The Echo Nest API does not provide definitions for these attributes, so we define them 
+    ourselves from what we gather on their developer blog:
+    ~ Danceability: a combination of energy, rhythm, and tempo approximated using algorithmic 
+    estimation by Echo Nest (values in range: [0.0..1.0])
+    ~ Energy: Energy from listener point of view (values in range: [0.0..1.0])
+    ~ Valence: Measure of the emotional content of a song (values in range: [0.0..1.0])
+        [Include the Valence-Arousal space photo (images/valence_arousal_space.png) as a definition of valence (NOTE: this is not 
+        provided by the Echo Nest API and is an outside definition from psychology)]
 
-Connections between HAC and KNN
-===============================
+General Approach
+=======================
+    kNN for Data Correlation
+    ------------------------
+        1. Data Retrieval
+            We used PHP scripts to pull song data from the Echo Nest API, with buckets of equal 
+            size for songs with danceability ratings from [0.0 - 0.1), [0.1 - 0.2), ..., [0.9 - 1.0].
 
-We added the HAC portion of this project for several reasons; to determine the
-connection between musical features (in our data space) and genre; to compare
-supervised and unsupervised methods in our classification; to determine how our
-kNN and HAC algorithms compare while using the VT transformation; and to see
-if these algorithms provide similar insights.
+            We separated these songs into two groups:
+            1. Training (1800 Songs)
+            2. Testing (500 Songs)
 
-Our primary conclusion from the results of both algorithms is that there is a
-feature not being considered in song classification. For some songs, there is not
-a strong correspondence between how they are clustered and how they are classified
-via kNN. We believe the most significant missing feature is lyrical content, which
-could aid in the classification of songs; however, this feature is difficult to
-integrate into our current feature representation as lyrics are common to many different
-genres. Lyrical content would have to be considered alongside musical features to
-be able to segregate genres.
+        2. Transformation
+            a. Coaxing Correlations Between Attributes
+            b. Improve Efficiency
+                (Vesha will handle 2.b)
+        3. Similarity Measure
+            Using the transformation we found to map song data to two dimensions, we use a simple 
+            Euclidean distance calculation to determine the k Nearest Neighbors for a given song.
 
+    Hierarchical Agglomerative Clustering
+    -------------------------------------
+        Our kNN implementation in this research project was used to predict musical traits
+        of songs based on the probable hypothesis that songs within the same genre have similar
+        musical properties (danceability, valence, tempo, etc.) To further correlate the
+        relevance of musical features in genrification, we used hierarchical agglomerative
+        clustering to study how genres emerge in our music data set. Specifically, we sought
+        to examine whether the clustering corresponds to well-defined (classified by real-world
+        musical experts) genres, and whether or not songs' nearest neighbors (in the kNN
+        implementation) are contained with the clustering found via HAC. This would demonstrate
+        the importance of particular features in the data set, and would indicate if
+        genres are defined by a range of musical features or whether features are sparse
+        throughout the feature space.
+
+        Our HAC implementation in MATLAB used the single-link (minimum distance), complete-link
+        (maximum distance), and average-link (average distance) methods to cluster our
+        song data set. The distance metric we used was Euclidean distance applied to
+        the song's VT transformation and valence.
+
+Analysis
+=======================
+    Feature <-> Genre?
+        In this project, we explore the Echo Nest API, which provides machine-learned numerical 
+        values for a song's danceability, valence, and energy. The Echo Nest developers do not 
+        define any of these attributes (we only have their name to use to derive their meaning), 
+        and do not expose how the values were determined. To better understand how these values 
+        might be derived and defined, we search for a transformative function that defines a 
+        correlation between those values that allow us to predict them using the k-Nearest 
+        Neighbors algorithm.
+
+        In an effort to measure how well we quantify the attributes danceability, valence, and 
+        energy, we explored HAC clustering to try to locate genres and subgenres (a natural way 
+        to group similar songs for humans) in our dataset using a song's danceability, valence, 
+        and energy to see if there exists some correlation between the subjective attributes that 
+        we mapped to numerical values (danceability, valence, and energy), and another subjective 
+        attribute (genre).
+
+        (VEENA: Please add here if/when you find some correlation between the two!)
+
+    Connections between HAC and KNN
+
+        We added the HAC portion of this project for several reasons; to determine the
+        connection between musical features (in our data space) and genre; to compare
+        supervised and unsupervised methods in our classification; to determine how our
+        kNN and HAC algorithms compare while using the VT transformation; and to see
+        if these algorithms provide similar insights.
+
+        Our primary conclusion from the results of both algorithms is that there is a
+        feature not being considered in song classification. For some songs, there is not
+        a strong correspondence between how they are clustered and how they are classified
+        via kNN. We believe the most significant missing feature is lyrical content, which
+        could aid in the classification of songs; however, this feature is difficult to
+        integrate into our current feature representation as lyrics are common to many different
+        genres. Lyrical content would have to be considered alongside musical features to
+        be able to segregate genres.
+
+Conclusion
+=======================
+    Data Issues
 
 Issues
 ======
