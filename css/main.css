@@ -56,7 +56,7 @@
 }
 
  /*veena*/
-#results .content div{
+#results .three_columns{
     display:inline-block;
 }
 
@@ -91,10 +91,15 @@
 #results h2 {
     font-size:13px;
 }
-
-.three_column {
-    max-width: 30%;
-    margin-right: 3%;
+#disp_results{
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.three_columns {
+    width: 500px;
+    margin-right: 50px;
+    margin-left:30px;
     display: inline-block;
 }
 
@@ -194,6 +199,15 @@ button {
 
     }
 
+    #explain_button {
+        left: 12.5%;
+        right: 12.5%;
+        position: absolute;
+        background-color:#;
+        bottom: 40px;
+
+    }
+
     button:hover{
         background-color: white;
         color: rgb(159, 76, 108);
@@ -226,11 +240,49 @@ iframe{
     margin-right:auto;
     text-align:center;
 }
-.three_columns {
-    max-width: 30%;
-    margin-right: 3%;
-    display: inline-block;
-    background-color:none;
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
 }
 
+.jcarousel {
 
+    position: relative;
+    overflow: hidden;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    margin-left:200px;
+
+}
+
+/*
+This is the container of the carousel items.
+You must ensure that the position is relative or absolute and
+that the width is big enough to contain all items.
+*/
+ul {
+    width: 90%;
+    position: relative;
+
+    /* Optional, required in this case since it's a <ul> element */
+    list-style: none;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    padding: 0;
+   }
+
+/*
+These are the item elements. jCarousel works best, if the items
+have a fixed width and height (but it's not required).
+*/
+ li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
+
+img.clusters{
+    margin-left:50px;
+}

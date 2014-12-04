@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html>
+<?php 
+//include("KNN/bin/test_KNN.php");
+?>
     <head>
+
         <meta charset="utf-8">
         <title>Do You Want to Dance?</title>
         <link type="text/css" rel="stylesheet" href="css/main.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+        <link rel='stylesheet' href='source/jquery.fancybox.css?v=2.1.5' type='text/css' media='screen' />
+        <script type='text/javascript' src='source/jquery.fancybox.pack.js?v=2.1.5'></script>
         <script>
+
             $(function () {
+
+                $("a.grouped_elements").fancybox({
+                    'transitionIn'  :   'elastic',
+                    'transitionOut' :   'elastic',
+                    'speedIn'       :   600, 
+                    'speedOut'      :   200, 
+                    'overlayShow'   :   false
+                });
+                
 
                 $('#dendro_button').on('click', function() {
                     $('html, body').animate({
@@ -14,6 +30,7 @@
                     }, 400);
                 });
 
+        
 
                 $('form').on('submit', function (e) {
 
@@ -157,6 +174,7 @@
         <div id="results" class="panel" style="display:none">
             <div class="content">
                 <div class="panel_header"><h1 id="song_name">Song to be Classified: </h1></div>
+                <div id = "disp_results">
                 <div class="three_columns">
                     <h3 id="predicted_danceability">Predicted Danceability: </h3>
                     <h3 id="actual_danceability">Actual Danceability: </h3>
@@ -180,68 +198,75 @@
                     <div id="top_kenergy_songs">
                     </div>
                 </div>
-                <button id="dendro_button">See the Sub-Genre Classification Dendrogram</button>
+                <button id="dendro_button">See the Sub-Genre Classification Results</button>
+                
+            </div>
             </div>
         </div>
 
-          <div id="dendro_img">
-                    <iframe src = "clustering/dendo.html" width='1000' height='100' style="height: 400px;"></iframe>
-                </div>
-
-        <div id="dendrogram" class="panel" style="display:none">
+        <div id="dendrogram" class="panel"style="display:none">
             <div class="content">
                 <div class="panel_header"><h1>Hierarchical Agglomerative Clustering Dendrogram</h1></div>
-                <div id="dendro_img">
-                    <iframe src = "clustering/dendo.html" width='1000' height='100' style="height: 400px;"></iframe>
+
+     
+                </script>
+               <div class="jcarousel">
+                    <ul>
+                        <li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c1.png">
+                            <img class ="clusters" src = "images/c1.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c2.png">
+                            <img class ="clusters" src = "images/c2.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c3.png">
+                            <img class ="clusters" src = "images/c3.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c4.png">
+                            <img class ="clusters" src = "images/c4.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c5.png">
+                            <img class ="clusters" src = "images/c5.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c6.png">
+                            <img class ="clusters" src = "images/c6.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c9.png">
+                            <img class ="clusters" src = "images/c9.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c10.png">
+                            <img class ="clusters" src = "images/c10.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                        <a class="grouped_elements" rel="group1" id="c1" href="images/c11.png">
+                            <img class ="clusters" src = "images/c11.png" width = '425' height = '270' alt = "">
+                            </a>
+                        </li>
+                       <!--  <li><img class ="clusters" src = "images/c2.png" width = '425' height = '270' ></li>
+                        <li><img class ="clusters" src = "images/c3.png" width = '425' height = '270' ></li>
+                        <li><img class ="clusters" src = "images/c4.png" width = '425' height = '270' ></li>
+                        <li><img class ="clusters" src = "images/c5.png" width = '425' height = '270' ></li>
+                        <li><img class ="clusters" src = "images/c6.png" width = '425' height = '270' ></li>
+                        <li><img class ="clusters" src = "images/c9.png" width = '425' height = '270' ></li>
+                        <li><img class ="clusters" src = "images/c10.png" width = '425' height = '270' ></li>
+                        <li><img class ="clusters" src = "images/c11.png" width = '425' height = '270' ></li> -->
+                       
+                    </ul>
+
+
                 </div>
 
-               <div id = "cluster_results">
-                    <div class = "three_columns">
-                         <div class ="clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c1.png" width = '450' height = '300'><br>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c2.png" width = '450' height = '300'>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c3.png" width = '450' height = '300'>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c4.png" width = '450' height = '300'>
-                        </div>
-                    </div>
-                    <div class = "three_columns">
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c5.png" width = '450' height = '300' >
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c6.png" width = '450' height = '300'>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c7.png" width = '450' height = '300'>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c8.png" width = '450' height = '300'>
-                        </div>
-                    </div>
-                    <div class = "three_columns" style=" margin-bottom: 20px; ">
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c9.png" width = '450' height = '300'>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c10.png" width = '450' height = '300'>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c11.png" width = '450' height = '300'>
-                        </div>
-                        <div class "clusters" style=" margin-bottom: 20px; ">
-                            <img class ="clusters" src = "images/c12.png" width = '450' height = '300'>
-                        </div>
-                    </div>
-                </div>
         </div>
         </div>
         <div id="credits" class="panel">
+            <br><br><br><br><br><br><br><br>
             <div class="panel_header"><h1>Project Motivation and Definition</h1></div>
             <div id="explanation">
                 <p>

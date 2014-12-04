@@ -50,8 +50,8 @@
                  root = JSON.parse(data);
                  
                  
-               var width = 7000,
-               height = 5000;
+               var width = 3000,
+               height = 3000;
                
                var cluster = d3.layout.cluster()
                .size([height-50, width - 160]);
@@ -94,44 +94,46 @@
 
 node.on("mouseover", function (d) {
                 d3.select(this).select('text')
+                 .call(wrap, 50)
                 .text(function(d){
-                    var textToFill = d.name ;
-                    //+ getChildren(d);
+                    var textToFill = d.name + getChildren(d);
                     return textToFill;
-                }).call(wrap, 50);
-               
-               
-});
-
-node.on("mouseout", function (d) {
-                d3.select(this).select('text')
-                .text(function(d){
-                    return "";
                 })
                
                
-               
 });
 
+// node.on("mouseout", function (d) {
+//                 d3.select(this).select('text')
+//                 .text(function(d){
+//                     return "";
+//                 })
+               
+               
+               
+// });
+
 function wrap(text, width) {
+    text.each(function (d) {
         var text = d3.select(this),
             words = d.name.split(/\s+/).reverse(),
             word,
             line = [],
             lineNumber = 0,
             lineHeight = 1.1, // ems
-
+            x = d.x,
+            y = d.y,
             dy = 0, //parseFloat(text.attr("dy")),
             tspan = text.text(null)
                         .append("tspan")
-                        .attr("x", 0)
-                        .attr("y", 0)
+                        .attr("x", x)
+                        .attr("y", y)
                         .attr("dy", dy + "em");
               alert(tspan.attr("dy"));
         while (word = words.pop()) {
             line.push(word);
             tspan.text(line.join(" "));
-            if (word.indexOf(",")>=0) {
+            if (tspan.node().getComputedTextLength() > width) {
                 line.pop();
                 tspan.text(line.join(" "));
                 line = [word];
@@ -139,12 +141,12 @@ function wrap(text, width) {
                             .attr("x", x)
                             .attr("y", y)
                             .attr("dy", ++lineNumber * lineHeight + dy + "em")
-                            .text(word).attr("font-color", "white");
-                  //alert(word + " " +tspan.attr("x") + " " + tspan.attr("y") + " " + tspan.attr(dy));
+                            .text(word);
+                  alert(tspan.attr("x") + " " + tspan.attr("y") + " " + tspan.attr(dy));
             }
 
         }
-
+    });
 }
   
   d3.select(self.frameElement).style("height", 450 + "px");
