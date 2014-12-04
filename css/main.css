@@ -205,5 +205,32 @@ iframe{
     height:200px;
     border-color:white;
     border-style:solid;
+
+      -ms-zoom: 0.75;
+        -moz-transform: scale(0.75);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.75);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(0.75);
+        -webkit-transform-origin: 0 0;
 }
+/*.clusters {
+    margin-bottom:50px;
+    border-style:solid;
+    border-color: 'black';
+    border-width:10px;
+}*/
+
+#cluster_results{
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+.three_columns {
+    max-width: 30%;
+    margin-right: 3%;
+    display: inline-block;
+    background-color:none;
+}
+
 

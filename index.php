@@ -157,7 +157,7 @@
         <div id="results" class="panel" style="display:none">
             <div class="content">
                 <div class="panel_header"><h1 id="song_name">Song to be Classified: </h1></div>
-                <div class="three_column">
+                <div class="three_columns">
                     <h3 id="predicted_danceability">Predicted Danceability: </h3>
                     <h3 id="actual_danceability">Actual Danceability: </h3>
                     <h3 id="dance_prediction_error">Prediction Error: </h3>
@@ -165,7 +165,7 @@
                     </div>
                 </div>
 
-                <div class="three_column">
+                <div class="three_columns">
                     <h3 id="predicted_valence">Predicted Danceability: </h3>
                     <h3 id="actual_valence">Actual Danceability: </h3>
                     <h3 id="valence_prediction_error">Prediction Error: </h3>
@@ -173,7 +173,7 @@
                     </div>
                 </div>
 
-               <div class="three_column">
+               <div class="three_columns">
                     <h3 id="predicted_energy">Predicted Danceability: </h3>
                     <h3 id="actual_energy">Actual Danceability: </h3>
                     <h3 id="energy_prediction_error">Prediction Error: </h3>
@@ -183,13 +183,63 @@
                 <button id="dendro_button">See the Sub-Genre Classification Dendrogram</button>
             </div>
         </div>
+
+          <div id="dendro_img">
+                    <iframe src = "clustering/dendo.html" width='1000' height='100' style="height: 400px;"></iframe>
+                </div>
+
         <div id="dendrogram" class="panel" style="display:none">
             <div class="content">
                 <div class="panel_header"><h1>Hierarchical Agglomerative Clustering Dendrogram</h1></div>
                 <div id="dendro_img">
                     <iframe src = "clustering/dendo.html" width='1000' height='100' style="height: 400px;"></iframe>
                 </div>
-            </div>
+
+               <div id = "cluster_results">
+                    <div class = "three_columns">
+                         <div class ="clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c1.png" width = '450' height = '300'><br>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c2.png" width = '450' height = '300'>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c3.png" width = '450' height = '300'>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c4.png" width = '450' height = '300'>
+                        </div>
+                    </div>
+                    <div class = "three_columns">
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c5.png" width = '450' height = '300' >
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c6.png" width = '450' height = '300'>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c7.png" width = '450' height = '300'>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c8.png" width = '450' height = '300'>
+                        </div>
+                    </div>
+                    <div class = "three_columns" style=" margin-bottom: 20px; ">
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c9.png" width = '450' height = '300'>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c10.png" width = '450' height = '300'>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c11.png" width = '450' height = '300'>
+                        </div>
+                        <div class "clusters" style=" margin-bottom: 20px; ">
+                            <img class ="clusters" src = "images/c12.png" width = '450' height = '300'>
+                        </div>
+                    </div>
+                </div>
+        </div>
         </div>
         <div id="credits" class="panel">
             <div class="panel_header"><h1>Project Motivation and Definition</h1></div>
@@ -225,7 +275,12 @@
                     we mapped to numerical values (danceability, valence, and energy), and another subjective 
                     attribute (genre).
                 </p>
-            </div>
+
+
+           
+
+                
+                
         </div>
     </body>
 </html>
