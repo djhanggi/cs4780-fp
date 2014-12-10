@@ -28,7 +28,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
 }
 
 # Define any new training files using the convention <number_of_songs>_songs.csv
-$train_csv_files = ["1800_songs.csv"];
+$train_csv_files = ["9000_songs.csv"];
 foreach ($train_csv_files as $train_csv_file) {
     $file = __DIR__."/../../DataParsing/csv/".$train_csv_file;
     $num_samples = explode('_', $train_csv_file)[0] . "\n";
