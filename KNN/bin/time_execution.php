@@ -11,7 +11,6 @@ require_once __DIR__."/../../Loader.php";
 
 $k = 15;
 $test_csv_file = __DIR__."/../../DataParsing/csv/randomSong_data.csv";
-$train_csv_file = __DIR__."/../../DataParsing/csv/all_songs.csv";
 $transformer = new KNN_VeenasRTransformation();
 
 $test_songs = [];
@@ -28,7 +27,7 @@ while (($line = fgetcsv($file)) !== FALSE) {
 }
 
 # Define any new training files using the convention <number_of_songs>_songs.csv
-$train_csv_files = ["9000_songs.csv"];
+$train_csv_files = ["100_songs.csv", "200_songs.csv", "400_songs.csv", "800_songs.csv", "1600_songs.csv", "3200_songs.csv", "7200_songs.csv", "9000_songs.csv"];
 foreach ($train_csv_files as $train_csv_file) {
     $file = __DIR__."/../../DataParsing/csv/".$train_csv_file;
     $num_samples = explode('_', $train_csv_file)[0] . "\n";
