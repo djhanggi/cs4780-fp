@@ -71,19 +71,16 @@
 
 
 #results .content div #top_kdance_songs > td{
-    /*width:110px;*/
     padding-right:2px;
 
 }
 
 #results .content div #top_kvalence_songs > td{
-    /*width:110px;*/
     padding-right:2px;
 
 }
 
 #results .content div #top_kenergy_songs > td{
-    /*max-width:110px;*/
     padding-right:2px;
 
 }
@@ -102,8 +99,6 @@
     margin-left:30px;
     display: inline-block;
 }
-
-/*end veena*/
 
 #results h1 {
     text-align: left;
@@ -186,7 +181,6 @@ button {
     border-style: solid;
     background-color: rgb(159, 76, 108);
     border-color: white;
-    /*padding-left: 6px;*/
     margin-top: 10px;
     font-family: MoonOnMars, sans-serif;
 }
@@ -228,12 +222,6 @@ iframe{
         -webkit-transform: scale(0.75);
         -webkit-transform-origin: 0 0;
 }
-/*.clusters {
-    margin-bottom:50px;
-    border-style:solid;
-    border-color: 'black';
-    border-width:10px;
-}*/
 
 #cluster_results{
     margin-left:auto;

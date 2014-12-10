@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-<?php 
-//include("KNN/bin/test_KNN.php");
-?>
     <head>
-
         <meta charset="utf-8">
         <title>Do You Want to Dance?</title>
         <link type="text/css" rel="stylesheet" href="css/main.css">
@@ -111,7 +107,6 @@
                                 $('#top_kvalence_songs').append("</tr></thead></tbody>");
 
                                 $.each(data.kNearest_valence, function(index, value) {
-                                    // $('#top_k_songs').append("<p>" + value.title + " by " + value.artist_name + " danceability: " + value.danceability + " valence: " + value.valence + " energy: " + value.energy + "</p>");
                                     $('#top_kvalence_songs').append("<tr>");
                                     $('#top_kvalence_songs').append("<td>" + value.title + "</td></br>");
                                     $('#top_kvalence_songs').append("<td>" + value.artist_name + "</td></br>");
@@ -249,21 +244,9 @@
                             <img class ="clusters" src = "images/c11.png" width = '425' height = '270' alt = "">
                             </a>
                         </li>
-                       <!--  <li><img class ="clusters" src = "images/c2.png" width = '425' height = '270' ></li>
-                        <li><img class ="clusters" src = "images/c3.png" width = '425' height = '270' ></li>
-                        <li><img class ="clusters" src = "images/c4.png" width = '425' height = '270' ></li>
-                        <li><img class ="clusters" src = "images/c5.png" width = '425' height = '270' ></li>
-                        <li><img class ="clusters" src = "images/c6.png" width = '425' height = '270' ></li>
-                        <li><img class ="clusters" src = "images/c9.png" width = '425' height = '270' ></li>
-                        <li><img class ="clusters" src = "images/c10.png" width = '425' height = '270' ></li>
-                        <li><img class ="clusters" src = "images/c11.png" width = '425' height = '270' ></li> -->
-                       
                     </ul>
-
-
                 </div>
-
-        </div>
+            </div>
         </div>
         <div id="credits" class="panel">
             <br><br><br><br><br><br><br><br>
@@ -300,12 +283,7 @@
                     we mapped to numerical values (danceability, valence, and energy), and another subjective 
                     attribute (genre).
                 </p>
-
-
-           
-
-                
-                
+            </div>
         </div>
     </body>
 </html>
