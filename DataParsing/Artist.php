@@ -1,6 +1,5 @@
 <?php
 
-// require_once($_SERVER['DOCUMENT_ROOT']."/Loader.php");
 require_once __DIR__."/../Loader.php";
 
 class DataParsing_Artist {

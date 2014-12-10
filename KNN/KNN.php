@@ -7,9 +7,6 @@ class KNN_KNN {
     /** @var DataParsing_Song */
     public $song_to_be_classified;
 
-    /** @var DataParsing_Song[] */
-    // public $kNearest;
-
     /** @var float */
     public $average_danceability;
 
@@ -51,7 +48,6 @@ class KNN_KNN {
         $searchQuery = "http://developer.echonest.com/api/v4/song/search?api_key=" . 
             DataParsing_APIKeys::CURRENT_KEY . "&format=json&results=5&artist=" . 
             $artistName . "&title=" . $songName;
-        // echo $searchQuery;
         $json = @file_get_contents($searchQuery);
         $response = json_decode($json,true);
         if ($response["response"]["songs"]) {

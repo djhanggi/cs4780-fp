@@ -51,9 +51,6 @@ class KNN_NearestNeighbor {
         $song->x_dance = $this->transformer->functionX_danceability($song);
         $song->y_dance= $this->transformer->functionY_danceability($song);
 
-        //appending for multiple X-Y comparisons 
-        //to measure similarity in dacenability, valence, AND energy
-
         //valence
         $song->x_valence = $this->transformer->functionX_valence($song);
         $song->y_valence = $this->transformer->functionY_valence($song);
@@ -139,8 +136,6 @@ class KNN_NearestNeighbor {
      * song that is to be classified.
      * @param DataParsing_Song $song_to_be_classified
      */
-
-
     public function sortSongs($song_to_be_classified, $without_transformation = False) {
         $this->song_to_be_classified = $song_to_be_classified;
         foreach ($this->data as $song) {
