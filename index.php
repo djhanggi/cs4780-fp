@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Do You Want to Dance?</title>
-        <link type="text/css" rel="stylesheet" href="css/main.css">
+        <link type="text/css" rel="stylesheet" href="css/old_main.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
         <link rel='stylesheet' href='source/jquery.fancybox.css?v=2.1.5' type='text/css' media='screen' />
         <script type='text/javascript' src='source/jquery.fancybox.pack.js?v=2.1.5'></script>
