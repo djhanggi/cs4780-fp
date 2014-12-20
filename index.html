@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sine Verbis</title>
+        <link type="text/css" rel="stylesheet" href="css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+        <script>
+            $(function () {
+                $('#sine_verbis').mouseover(function() {
+                    $('#sine_verbis').html("[without words]");
+                });
+
+                $('#sine_verbis').mouseout(function() {
+                    $('#sine_verbis').html("sine verbis");
+                });
+
+                $('#about_project').on('click', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#introduction').offset().top
+                    }, 400);
+                });
+
+                $('#to_transforming_data').on('click', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#transforming_data').offset().top
+                    }, 400);
+                });
+
+                $('#to_knn').on('click', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#knn').offset().top
+                    }, 400);
+                });
+
+                $('#to_hac').on('click', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#hac').offset().top
+                    }, 400);
+                });
+
+                $('#to_more').on('click', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#more').offset().top
+                    }, 400);
+                });
+
+                $('.to_about_us').on('click', function() {
+                    if($('#sources_panel').is(":visible")) {
+                        $('html, body').animate({
+                            scrollTop: $('#sources_panel').offset().top
+                        }, 400);
+                    } else {
+                        $('html, body').animate({
+                            scrollTop: $('#about_us').offset().top
+                        }, 400);
+                    }
+                });
+
+                $('.to_about_us2').on('click', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#about_us').offset().top
+                    }, 400);
+                });
+
+                $('#sources_link').on('click', function() {
+                    $('#sources_panel').show();
+                    $('html, body').animate({
+                        scrollTop: $('#sources_panel').offset().top
+                    }, 400);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="overview" class="panel">
+                <div class="content">
+                    <div id="main_text">
+                        <h1 id="sine_verbis">sine verbis</h1>
+                        <h2>Subjective Metadata in Music Classification:</h2>
+                        <h2>Genre Prediction via Hiearchical Agglomerative Clustering</h2>
+                    </div>
+                    <button id="about_project">About this Project</button>
+                </div>
+            </div>
+
+            <div id="introduction" class="panel">
+                <div class="one_quarter">
+                    <button id="intro_button" class="panel_header">Introduction</button>
+                </div>
+                <div class="three_quarters">
+                    <div class="text">
+                        <p>Automated music genre prediction has many interesting uses, including the music recommendation algorithms popular in modern day music applications such as iTunes' Genius Playlists and Spotify's Suggested Tracks. The majority of the algorithms that form the basis of these services are privately held and used by the companies who created them. </p>
+                        <p>We know many of these algorithms use sentimental analysis on the lyrics of songs for their recommendations, but that comes with its own costs. For one, music recommendation companies must consider the storage constraints they may encounter when storing lyrical text for the massive collection of the songs they may recommend.</p>
+                        <p>We hope to find a less data-intensive way of classifying songs into genres (the first and most simple step in grouping songs by similarity) by using song metadata that numerically encapsulates subjective attributes such as energy and danceability. We hope that in using these subjective attributes, we will be able to recover some quality of music classification that is lost when an important portion of the data set is removed: the lyrics.</p>
+                    </div>
+                </div>
+                <div id="to_transforming_data" class="down_button"><input type="image" src="images/appbar.chevron.down.png"></div>
+            </div>
+            <div id="transforming_data" class="panel">
+                <div class="one_quarter">
+                    <button id="transforming_button" class="panel_header" onclick="location.href='https://github.com/djh325/cs4780-fp/tree/master/DataParsing/Data%20Mapping'">Transformation of Data</button>
+                </div>
+                <div class="three_quarters">
+                    <div class="col2">
+                        <div id="valence_map" class="col2_img"></div>
+                    </div>
+                    <div class="col2">
+                        <p>We adopted the idea of using a feature mapping to make data linearly separable in higher dimensions from SVM applications by creating a transformation function that mapped variables in our data set into a linear shape. In this way, we could more thoroughly explore the relationship among variables in our data set and how they relate to our key attributes of danceability, valence, and energy.</p>
+                    </div>
+                </div>
+                <div id="to_knn" class="down_button"><input type="image" src="images/appbar.chevron.down.png"></div>
+            </div>
+
+            <div id="knn" class="panel">
+                <div class="one_quarter">
+                    <button id="knn_button" class="panel_header" onclick="location.href='https://github.com/djh325/cs4780-fp/tree/master/KNN'">k-Nearest Neighbors to Explore Data</button>
+                </div>
+                <div class="three_quarters">
+                    <div class="col2">
+                        <p>We implemented kNN with and without our transformation function to predict danceability, valence, and energy for a given song and compared the results to check the correctness of our transformation function.</p>
+                        <p>Our more formal definitions for danceability, energy, and valence follow from our explorations with the data using kNN and our transformation function to predict the values of energy, valence, and danceability, given our understanding of the correlation between the attributes in the metadata of a song.</p>
+                    </div>
+                    <div class="col2">
+                        <p>Definitions:</p>
+                        <ul>
+                            <li>Danceablity: The ease with which a listener can dance to the song, using a modern dance style. Consistent, upbeat rhythm and high energy.</li>
+                            <li>Valence: Low valence corresponds to sadness/negativity and high valence corresponds to happiness/positivity.</li>
+                            <li>Energy: How stimulating a song is.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="to_hac" class="down_button"><input type="image" src="images/appbar.chevron.down.png"></div>
+            </div>
+
+            <div id="hac" class="panel">
+                <div class="one_quarter">
+                    <button id="hac_button" class="panel_header" onclick="location.href='https://github.com/djh325/cs4780-fp/tree/master/clustering'">Hierarchical Agglomerative Clustering: Genre Classification</button>
+                </div>
+                <div class="three_quarters">
+                    <div class="col2">
+                        <div id="genre_cluster" class="col2_img"></div>
+                    </div>
+                    <div class="col2">
+                        <p>Our HAC implementation in MATLAB used the single-link (minimum distance), complete-link (maximum distance), and average-link (average distance) methods to cluster our song data set. The distance metric we used was Euclidean distance applied to the song's transformation and valence.</p>
+                        <p>We show a sample cluster to the left. You can see that about 60% of songs clustered here belong to genres that are similar to one another.</p>
+                    </div>
+                </div>
+                <div id="to_more" class="down_button"><input type="image" src="images/appbar.chevron.down.png"></div>
+            </div>
+
+            <div id="more" class="panel">
+                <div class="one_quarter">
+                    <button id="more_button" class="panel_header">You Should Also See....</button>
+                </div>
+                <div class="three_quarters">
+                    <div class="col2 left">
+                        <a target="_blank" href="https://github.com/djh325/cs4780-fp">
+                            <div class="more_link">
+                                <h2>Code Base</h2>
+                                <div id="code_base" class="graphic"></div>
+                            </div>
+                        </a>
+                        <a target="_blank" href="reports/poster.pdf">
+                            <div class="more_link">
+                                <h2>Poster</h2>
+                                <div id="poster" class="graphic"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col2 right">
+                        <a target="_blank" href="reports/final-report.pdf">
+                            <div class="more_link">
+                                <h2>Report</h2>
+                                <div id="report" class="graphic"></div>
+                            </div>
+                        </a>
+                        <a id="sources_link" href="javascript:void(0)">
+                            <div class="more_link">
+                                <h2>Sources</h2>
+                                <div id="sources" class="graphic"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="down_button to_about_us"><input type="image" src="images/appbar.chevron.down.png"></div>
+            </div>
+
+            <div id="sources_panel" class="panel" style="display: none;">
+                <div class="one_quarter">
+                    <button id="sources_button" class="panel_header">Sources</button>
+                </div>
+                <div class="three_quarters">
+                    <div class="col2 left">
+                        <h1>Web Interface</h1>
+                        <h2>Background Images</h2>
+                        <h3>(In order of appearance from top to bottom)</h3>
+                        <a target="_blank" href="http://www.otgrec.com/#shop">Record Crates</a>
+                        <a target="_blank" href="http://www.cultofmac.com/277254/streaming-record-stores/">Record Store</a>
+                        <a target="_blank" href="http://therealverticalhouse.com/blog/?p=585">Record Store Wall</a>
+                        <a target="_blank" href="http://www.wallpapermania.eu/wallpaper/recording-vintage-music-on-the-telephone-hd-wallpaper">Turntable</a>
+                        <a target="_blank" href="http://sonicweekly.com/articles/independent-labels-the-mavericks-of-rock-n%E2%80%99-roll/">Records on Wall</a>
+                        <a target="_blank" href="http://thefusionmag.com/record-store-day/">Vinyl Piles</a>
+                        <a target="_blank" href="http://austinindierecords.bandcamp.com/">Audio Adjustments</a>
+                    </div>
+                    <div class="col2 right">
+                        <h1>Project</h1>
+                        <a target="_blank" href="http://developer.echonest.com/docs/v4">Echo Nest API</a>
+                        <a target="_blank" href="http://www.mathworks.com/help/stats/hierarchical- clustering-12.html">Mathworks HAC Implementation Documentation</a>
+                        <a target="_blank" href="http://www.cs.cornell.edu/Courses/cs4780/2014fa/">Thorsten Joachisms Machine Learning Lecture Notes (Cornell University)</a>
+                        <br>
+                        <h1>Fonts</h1>
+                        <a target="_blank" href="http://absolutfoundry.com/fonts/mohave">Mohave</a>
+                        <a target="_blank" href="http://www.fontsquirrel.com/fonts/lato">Lato (Thin)</a>
+                    </div>
+                </div>
+                <div class="down_button to_about_us2"><input type="image" src="images/appbar.chevron.down.png"></div>
+            </div>
+
+            <div id="about_us" class="panel">
+                <div class="one_quarter">
+                    <button id="about" class="panel_header">Meet the Team</button>
+                </div>
+                <div class="three_quarters">
+                    <div class="col2 left">
+                        <div id="veena" class="person">
+                            <h2>Veena Calambur</h2>
+                            <div class="headshot"></div>
+                            <div class="social_media">
+                                <a target="_blank" href="www.linkedin.com/pub/veena-calambur/58/b09/6a1"><div class="linkedin icons"></div></a>
+                                <a target="_blank" href="https://github.com/veenacalambur"><div class="github icons"></div></a>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div id="vesha" class="person">
+                            <h2>La Vesha Parker</h2>
+                            <div class="headshot"></div>
+                            <div class="social_media">
+                                <a target="_blank" href="https://www.linkedin.com/pub/la-vesha-parker/54/115/6aa"><div class="linkedin icons"></div></a>
+                                <a target="_blank" href="https://github.com/laveshaparker"><div class="github icons"></div></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col2 right">
+                        <div id="dan" class="person">
+                            <h2>Daniel Hanggi</h2>
+                            <div class="headshot"></div>
+                            <div class="social_media">
+                                <a target="_blank" href="www.linkedin.com/in/danielhanggi"><div class="linkedin icons"></div></a>
+                                <a target="_blank" href="https://github.com/djh325"><div class="github icons"></div></a>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div id="javi" class="person">
+                            <h2>Javier Ortiz</h2>
+                            <div class="headshot"></div>
+                            <div class="social_media">
+                                <a target="_blank" href="https://github.com/jjo76"><div class="github icons"></div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

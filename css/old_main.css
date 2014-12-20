@@ -1,0 +1,276 @@
+@font-face {
+    font-family: MoonOnMars;
+    src: url('../fonts/FULLMoonOnMars.otf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.panel .content {
+    border-style: solid;
+    border-color: white;
+    height: 100%;
+}
+
+#dendrogram {
+    background-color: rgba(245, 61, 47, .7);
+    padding: 20px;
+    text-align: left; 
+}
+
+#dendrogram p {
+    padding: 30px;
+}
+
+#dendro_img {
+    height: 50%;
+    width: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 0 25%;
+}
+
+.panel {
+    height: 100%;
+    width: 100%;
+    clear: both;
+    position: relative;
+    text-align: center;
+    padding: 30px;
+}
+
+#results {
+    background-color: rgba(159, 76, 108, .7);
+    padding: 20px;
+    text-align: left;
+}
+
+#results .content {
+    padding: 30px;
+    position: relative;
+}
+
+ /*veena*/
+#results .three_columns{
+    display:inline-block;
+}
+
+#results .content div #top_kdance_songs > thead, 
+#results .content div #top_kvalence_songs > thead, 
+#results .content div #top_kenergy_songs > thead{
+    font-weight:bold;
+    font-size:16px;
+        border-bottom-style: solid;
+    border-color:#fff;
+}
+
+
+#results .content div #top_kdance_songs > td{
+    padding-right:2px;
+
+}
+
+#results .content div #top_kvalence_songs > td{
+    padding-right:2px;
+
+}
+
+#results .content div #top_kenergy_songs > td{
+    padding-right:2px;
+
+}
+
+#results h2 {
+    font-size:13px;
+}
+#disp_results{
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.three_columns {
+    width: 500px;
+    margin-right: 50px;
+    margin-left:30px;
+    display: inline-block;
+}
+
+#results h1 {
+    text-align: left;
+    margin:0 auto;
+}
+
+
+
+#explanation {
+    text-align: justify;
+    font-size: 110%;
+}
+
+#explanation p {
+    margin-bottom: 35px;
+}
+
+#classifier {
+    background-image: url('../images/people_dancing.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+html, body {
+    background-image: url('../images/grey_wash_wall.png');
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-family: helvetica, sans-serif;
+    font-weight: 100;
+}
+
+h1 {
+    padding: 20px;
+    font-family: MoonOnMars;
+    font-size: 300%;
+}
+
+.panel_header {
+    text-align: center;
+}
+
+#classifier .panel_content {
+    height: 300px;
+    width: 900px;
+    background-color: rgba(159, 76, 108, .7);
+}
+
+.panel_content {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+span {
+    background-color: red;
+}
+
+input[type="text"] {
+    width: 75%;
+    min-height: 50px;
+    background-color: rgb(249, 249, 249);
+    border-style: solid;
+    border-color: rgb(240, 240, 240);
+    padding-left: 6px;
+    border-width: thin;
+    color: rgb(90,92,100);
+    margin-bottom: 10px;
+}
+
+button {
+    width: 75%;
+    min-height: 60px;
+    font-size: 200%;
+    color: white;
+    text-align: center;
+    border-style: solid;
+    background-color: rgb(159, 76, 108);
+    border-color: white;
+    margin-top: 10px;
+    font-family: MoonOnMars, sans-serif;
+}
+
+    #dendro_button {
+        left: 12.5%;
+        right: 12.5%;
+        position: absolute;
+        bottom: 40px;
+
+    }
+
+    #explain_button {
+        left: 12.5%;
+        right: 12.5%;
+        position: absolute;
+        background-color:#;
+        bottom: 40px;
+
+    }
+
+    button:hover{
+        background-color: white;
+        color: rgb(159, 76, 108);
+    }
+
+iframe{
+    margin:0 auto;
+    text-align:center;
+    height:200px;
+    border-color:white;
+    border-style:solid;
+
+      -ms-zoom: 0.75;
+        -moz-transform: scale(0.75);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.75);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(0.75);
+        -webkit-transform-origin: 0 0;
+}
+
+#cluster_results{
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.jcarousel {
+
+    position: relative;
+    overflow: hidden;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    margin-left:200px;
+
+}
+
+/*
+This is the container of the carousel items.
+You must ensure that the position is relative or absolute and
+that the width is big enough to contain all items.
+*/
+ul {
+    width: 90%;
+    position: relative;
+
+    /* Optional, required in this case since it's a <ul> element */
+    list-style: none;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    padding: 0;
+   }
+
+/*
+These are the item elements. jCarousel works best, if the items
+have a fixed width and height (but it's not required).
+*/
+ li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
+
+img.clusters{
+    margin-left:50px;
+}

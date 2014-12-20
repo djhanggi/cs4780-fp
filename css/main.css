@@ -1,6 +1,11 @@
 @font-face {
-    font-family: MoonOnMars;
-    src: url('../fonts/FULLMoonOnMars.otf');
+    font-family: Mohave;
+    src: url('../fonts/Mohave.otf');
+}
+
+@font-face {
+    font-family: Lato;
+    src: url('../fonts/Lato-Thin.ttf');
 }
 
 * {
@@ -11,165 +16,33 @@
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.panel .content {
-    border-style: solid;
-    border-color: white;
-    height: 100%;
-}
-
-#dendrogram {
-    background-color: rgba(245, 61, 47, .7);
-    padding: 20px;
-    text-align: left; 
-}
-
-#dendrogram p {
-    padding: 30px;
-}
-
-#dendro_img {
-    height: 50%;
-    width: 50%;
-    background-size: cover;
-    background-position: center;
-    margin: 0 25%;
-}
-
-.panel {
-    height: 100%;
-    width: 100%;
-    clear: both;
-    position: relative;
-    text-align: center;
-    padding: 30px;
-}
-
-#results {
-    background-color: rgba(159, 76, 108, .7);
-    padding: 20px;
-    text-align: left;
-}
-
-#results .content {
-    padding: 30px;
-    position: relative;
-}
-
- /*veena*/
-#results .three_columns{
-    display:inline-block;
-}
-
-#results .content div #top_kdance_songs > thead, 
-#results .content div #top_kvalence_songs > thead, 
-#results .content div #top_kenergy_songs > thead{
-    font-weight:bold;
-    font-size:16px;
-        border-bottom-style: solid;
-    border-color:#fff;
-}
-
-
-#results .content div #top_kdance_songs > td{
-    padding-right:2px;
-
-}
-
-#results .content div #top_kvalence_songs > td{
-    padding-right:2px;
-
-}
-
-#results .content div #top_kenergy_songs > td{
-    padding-right:2px;
-
-}
-
-#results h2 {
-    font-size:13px;
-}
-#disp_results{
-    display:inline-block;
-    margin-left:auto;
-    margin-right:auto;
-}
-.three_columns {
-    width: 500px;
-    margin-right: 50px;
-    margin-left:30px;
-    display: inline-block;
-}
-
-#results h1 {
-    text-align: left;
-    margin:0 auto;
-}
-
-
-
-#explanation {
-    text-align: justify;
-    font-size: 110%;
-}
-
-#explanation p {
-    margin-bottom: 35px;
-}
-
-#classifier {
-    background-image: url('../images/people_dancing.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
 html, body {
     background-image: url('../images/grey_wash_wall.png');
     height: 100%;
     width: 100%;
     color: white;
-    font-family: helvetica, sans-serif;
+    font-family: Lato, Roboto, Raleway, Verdana, Geneva, sans-serif;
     font-weight: 100;
+}
+
+#container {
+    min-width: 1180px;
+    height: 100%;
+}
+
+p {
+    font-weight: 50;
+}
+
+
+h1, h2, h3 {
+    font-family: Mohave, sans-serif;
+    font-size: 200%;
 }
 
 h1 {
     padding: 20px;
-    font-family: MoonOnMars;
-    font-size: 300%;
-}
-
-.panel_header {
-    text-align: center;
-}
-
-#classifier .panel_content {
-    height: 300px;
-    width: 900px;
-    background-color: rgba(159, 76, 108, .7);
-}
-
-.panel_content {
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-
-span {
-    background-color: red;
-}
-
-input[type="text"] {
-    width: 75%;
-    min-height: 50px;
-    background-color: rgb(249, 249, 249);
-    border-style: solid;
-    border-color: rgb(240, 240, 240);
-    padding-left: 6px;
-    border-width: thin;
-    color: rgb(90,92,100);
-    margin-bottom: 10px;
+    font-size: 500%;
 }
 
 button {
@@ -179,98 +52,378 @@ button {
     color: white;
     text-align: center;
     border-style: solid;
-    background-color: rgb(159, 76, 108);
+    border-width: 5px;
     border-color: white;
-    margin-top: 10px;
-    font-family: MoonOnMars, sans-serif;
+    font-family: Mohave, sans-serif;
+    font-weight: 200;
+    background-color: transparent;
+}
+    
+    .bottom_button {
+        position: absolute;
+        width: 70%;
+        bottom: 20px;
+        left: 15%;
+        right: 15%;
+    }
+
+    .panel_header {
+        position: absolute;
+        width: 50%;
+        height: 40%;
+        left: 25%;
+        right: 25%;
+        top: 30%;
+    }
+
+.panel {
+    height: 100%;
+    width: 100%;
+    clear: both;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-    #dendro_button {
+    .panel .content {
+        height: 100%;
+        position: relative;
+    }
+
+    .panel .down_button {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        bottom: 0px;
+    }
+
+.one_quarter {
+        position: relative;
+        height: 33%;
+        box-shadow:        inset  0  10px 15px -8px #000, 
+                        inset  0 -10px 15px -8px #000;
+    }
+
+    .three_quarters {
+        font-size: 111%;
+        position: absolute;
+        top: 33%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+        .three_quarters .text {
+            height: 100%;
+            font-size: 130%;
+        }
+
+        .three_quarters .col2 {
+            height: 100%;
+            width: 50%;
+            padding: 20px;
+            float: left;
+            /*background-color: orange;*/
+            position: relative;
+        }
+
+            .three_quarters .col2 p {
+                padding: 20px;
+                font-size: 140%;
+            }
+
+            .three_quarters .col2 li {
+                font-size: 130%;
+                padding: 5px;
+            }
+
+            .three_quarters .col2 .col2_img {
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 100%;
+                width: 100%;
+            }
+
+#overview {
+    background-image: url("../images/Record-Store-Photo.jpg");
+    background-position: top;
+    color: rgb(255, 255, 255);
+    
+}
+
+#overview .content {
+    height: 100%;
+    background-color: rgba(168, 2, 2, .5);
+}
+
+    #overview #main_text {
+        text-align: center;
+        position: absolute;
+        top: 30%;
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    #overview #about_project {
+        width: 40%;
+        position: absolute;
+        left: 30%;
+        right: 30%;
+        bottom: 5%;
+        border-color: rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+    }
+
+        #overview #about_project:hover {
+            background-color: rgba(255, 255, 255, .8);
+            border-color: rgba(255, 255, 255, .8);
+            color: black;
+        }
+
+#introduction {
+    background-image: url("../images/20140430-record-store-0021-final.jpg");
+}
+
+    #introduction .one_quarter {
+        background-color: rgba(215, 48, 39, .5);
+    }
+    
+    #introduction .three_quarters {
+        background-color: rgba(215, 48, 39, .9);
+    }
+
+        #introduction .three_quarters p {
+            font-size: 100%;
+            margin: 30px 20px; 
+        }
+
+#transforming_data {
+    background-image: url("../images/Record-Store.jpg");
+}
+
+    #transforming_data .one_quarter {
+        background-color: rgba(252, 141, 89, .5);
+    }
+
+    #transforming_data .three_quarters {
+        background-color: rgba(252, 141, 89, .9);
+    }
+
+        #transforming_data .three_quarters #valence_map {
+            background-image: url("../images/map_valence.png");
+        }
+    
+
+#knn {
+    background-image: url("../images/Recording-vintage-music-on-the-telephone-HD-wallpaper_1280x800.jpg");
+}
+
+    #knn .one_quarter {
+        background-color: rgba(224, 194, 114, .5);
+    }
+
+    #knn .three_quarters {
+        background-color: rgba(224, 194, 114, .98);
+    }
+
+#hac {
+    background-image: url("../images/Indie-Records.jpg");
+}
+
+    #hac_button {
+        position: absolute;
+        width: 75%;
+        height: 40%;
         left: 12.5%;
         right: 12.5%;
-        position: absolute;
-        bottom: 40px;
-
+        top: 30%;
     }
 
-    #explain_button {
-        left: 12.5%;
-        right: 12.5%;
-        position: absolute;
-        background-color:#;
-        bottom: 40px;
-
+    #hac .one_quarter {
+        background-color: rgba(154, 173, 178, .6);
     }
 
-    button:hover{
-        background-color: white;
-        color: rgb(159, 76, 108);
+    #hac .three_quarters {
+        background-color: rgba(154, 173, 178, .95);
     }
 
-iframe{
-    margin:0 auto;
-    text-align:center;
-    height:200px;
-    border-color:white;
-    border-style:solid;
+        #hac .three_quarters #genre_cluster {
+            background-image: url("../images/c11.png");
+        }
 
-      -ms-zoom: 0.75;
-        -moz-transform: scale(0.75);
-        -moz-transform-origin: 0 0;
-        -o-transform: scale(0.75);
-        -o-transform-origin: 0 0;
-        -webkit-transform: scale(0.75);
-        -webkit-transform-origin: 0 0;
+#more {
+    background-image: url("../images/vinyl_love_by_breath_defying-d37ys3u.jpg");
+}
+    #more .one_quarter {
+        background-color: rgba(145, 191, 219, .5);
+        text-align: center;
+    }
+
+    #more .three_quarters {
+        background-color: rgba(145, 191, 219, .9);
+        text-align: center;
+    }
+
+        #more .three_quarters button {
+            height: 20%;
+            margin: 1% 0;
+        }
+
+        #more .three_quarters .more_link {
+            height: 50%;
+            width: 50%;
+            display: block;
+            margin-left: 1px;
+            position: relative;
+        }
+
+            #more .three_quarters .left .more_link {
+                float: right;
+            }
+
+            #more .three_quarters .right .more_link {
+                float: left;
+            }
+
+        #more .three_quarters .col2 .graphic {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            height: 13vw;
+            width: 13vw;
+            border-radius: 50%;
+            left: 23%;
+            display: block;
+        }
+        
+            #more .three_quarters #code_base.graphic {
+                background-image: url("../images/code_base.png");
+            }
+
+            #more .three_quarters #poster.graphic {
+                background-image: url("../images/poster.png");
+            }
+
+            #more .three_quarters #report.graphic {
+                background-image: url("../images/report.png");
+            }
+
+            #more .three_quarters #sources.graphic {
+                background-image: url("../images/sources.png");
+            }
+
+#sources_panel {
+    background-image: url("../images/0003719740_10.jpg");
+    font-weight: 700;
 }
 
-#cluster_results{
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
+    #sources_panel h1 {
+        font-size: 250%;
+        margin: 0 0 10px 0;
+        padding: 0;
+    }
+
+    #sources_panel h2 {
+        font-size: 150%;
+        margin: 15px 0;
+    }
+
+    #sources_panel h3 {
+        font-size: 100%;
+        margin: 5px 0;
+    }
+
+    #sources_panel a {
+        font-size: 130%;
+        color: white;
+        display: block;
+        text-decoration: none;
+    }
+
+    #sources_panel .one_quarter {
+        background-color: rgba(69, 117, 180, .5);
+    }
+
+    #sources_panel .three_quarters {
+        background-color: rgba(69, 117, 180, .9);
+    }
+
+#about_us {
+    background-color: rgb(151, 50, 75);
 }
 
-.jcarousel {
-    position: relative;
-    overflow: hidden;
-}
+    #about_us .one_quarter {
+        background-color: rgba(10, 10, 10, .6);
+    }
 
-.jcarousel {
+    #about_us .three_quarters {
+        background-color: rgba(10, 10, 10, .8);
+    }
 
-    position: relative;
-    overflow: hidden;
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
-    margin-left:200px;
+    #about_us .person {
+        height: 50%;
+        width: 60%;
+        position: relative;
+        text-align: center;
+    }
 
-}
+        #about_us .left .person {
+            float: right;
+        }
 
-/*
-This is the container of the carousel items.
-You must ensure that the position is relative or absolute and
-that the width is big enough to contain all items.
-*/
-ul {
-    width: 90%;
-    position: relative;
+        #about_us .right .person {
+            float: left;
+        }
 
-    /* Optional, required in this case since it's a <ul> element */
-    list-style: none;
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
-    padding: 0;
-   }
+        #about_us .person .headshot {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            height: 12vw;
+            width: 12vw;
+            border-radius: 50%;
+            left: 20%;
+        }
 
-/*
-These are the item elements. jCarousel works best, if the items
-have a fixed width and height (but it's not required).
-*/
- li {
-    /* Required only for block elements like <li>'s */
-    float: left;
-}
+            #about_us #veena.person .headshot {
+                background-image: url("../images/veena.png");
+            }
 
-img.clusters{
-    margin-left:50px;
-}
+            #about_us #vesha.person .headshot {
+                background-image: url("../images/vesha.jpg");
+            }
+
+            #about_us #dan.person .headshot {
+                background-image: url("../images/dan.jpg");
+            }
+
+            #about_us #javi.person .headshot {
+                background-image: url("../images/javi.jpg");
+            }
+
+        #about_us .person .social_media {
+            height: 12vw;
+            width: 4vw;
+            position: absolute;
+            left: 65%;
+        }
+
+            #about_us .person .social_media .icons {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 6vw;
+            }
+
+            #about_us .person .social_media .linkedin {
+                background-image: url("../images/linkedin.png");
+            }
+
+            #about_us .person .social_media .github {
+                background-image: url("../images/github.png");
+            }
