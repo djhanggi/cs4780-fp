@@ -8,9 +8,9 @@ if (isset($_POST['artist_name']) && isset($_POST['song_name'])) {
     $transformer = new KNN_VeenasRTransformation();
 
     $KNN = new KNN_KNN(__DIR__."/../../DataParsing/csv/all_songs.csv", $transformer);
-    $KNN->searchAndBegin($song_name, $artist_name);
+    $KNN->searchAndBegin($song_name, $artist_name, True);
 
-    $KNN->findTopK(15);
+    $KNN->findTopK(20);
     echo json_encode($KNN);
 } else {
     echo("failure");

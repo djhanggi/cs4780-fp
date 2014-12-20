@@ -1,0 +1,103 @@
+With 450
+ training samples
+Without Transformation:
+Execution time: 9.125736951828
+average danceability prediction error: 0.33683912008218
+average valence prediction error: 0.29338516076014
+average energy prediction error: 0.13320181859271
+
+With Transformation:
+Execution time: 9.5305058956146
+average danceability prediction error: 0.35327786296867
+average valence prediction error: 0.30337183585003
+average energy prediction error: 0.22114001448382
+
+
+With 900
+ training samples
+Without Transformation:
+Execution time: 20.93558216095
+average danceability prediction error: 0.23814493045711
+average valence prediction error: 0.23199219404212
+average energy prediction error: 0.12250749429892
+
+With Transformation:
+Execution time: 21.460040092468
+average danceability prediction error: 0.25086824612224
+average valence prediction error: 0.24284258510529
+average energy prediction error: 0.2144898492039
+
+
+With 1800
+ training samples
+Without Transformation:
+Execution time: 47.300940990448
+average danceability prediction error: 0.13804595613765
+average valence prediction error: 0.1929827721623
+average energy prediction error: 0.12107892131484
+
+With Transformation:
+Execution time: 48.283780097961
+average danceability prediction error: 0.14778413035439
+average valence prediction error: 0.20354272419106
+average energy prediction error: 0.20367772449923
+
+
+With 3600
+ training samples
+Without Transformation:
+Execution time: 111.44630908966
+average danceability prediction error: 0.13560063965074
+average valence prediction error: 0.1862678315357
+average energy prediction error: 0.11347742526965
+
+With Transformation:
+Execution time: 107.62814998627
+average danceability prediction error: 0.14760426861839
+average valence prediction error: 0.19752472316384
+average energy prediction error: 0.19994887919877
+
+
+With 5400
+ training samples
+Without Transformation:
+Execution time: 173.82625412941
+average danceability prediction error: 0.13365929840781
+average valence prediction error: 0.18160102434515
+average energy prediction error: 0.11096410272214
+
+With Transformation:
+Execution time: 185.34788703918
+average danceability prediction error: 0.14464098212635
+average valence prediction error: 0.1893522914227
+average energy prediction error: 0.19429610929635
+
+
+With 7200
+ training samples
+Without Transformation:
+Execution time: 261.39297890663
+average danceability prediction error: 0.1307209675398
+average valence prediction error: 0.17215547745249
+average energy prediction error: 0.10757059979456
+
+With Transformation:
+Execution time: 267.85581302643
+average danceability prediction error: 0.14617923133025
+average valence prediction error: 0.18539003133025
+average energy prediction error: 0.18579505701079
+
+
+With 9000
+ training samples
+Without Transformation:
+Execution time: 328.5454621315
+average danceability prediction error: 0.12849528834104
+average valence prediction error: 0.1707574171546
+average energy prediction error: 0.10497579280945
+
+With Transformation:
+Execution time: 335.32471990585
+average danceability prediction error: 0.15067534935799
+average valence prediction error: 0.1856322941962
+average energy prediction error: 0.18024407026194

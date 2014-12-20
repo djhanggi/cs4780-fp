@@ -34,7 +34,71 @@
     clear: both;
     position: relative;
     text-align: center;
+    padding: 30px;
 }
+
+#results {
+    background-color: rgba(159, 76, 108, .7);
+    padding: 20px;
+    text-align: left;
+}
+
+#results .content {
+    padding: 30px;
+    position: relative;
+}
+
+ /*veena*/
+#results .three_columns{
+    display:inline-block;
+}
+
+#results .content div #top_kdance_songs > thead, 
+#results .content div #top_kvalence_songs > thead, 
+#results .content div #top_kenergy_songs > thead{
+    font-weight:bold;
+    font-size:16px;
+        border-bottom-style: solid;
+    border-color:#fff;
+}
+
+
+#results .content div #top_kdance_songs > td{
+    padding-right:2px;
+
+}
+
+#results .content div #top_kvalence_songs > td{
+    padding-right:2px;
+
+}
+
+#results .content div #top_kenergy_songs > td{
+    padding-right:2px;
+
+}
+
+#results h2 {
+    font-size:13px;
+}
+#disp_results{
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.three_columns {
+    width: 500px;
+    margin-right: 50px;
+    margin-left:30px;
+    display: inline-block;
+}
+
+#results h1 {
+    text-align: left;
+    margin:0 auto;
+}
+
+
 
 #explanation {
     text-align: justify;
@@ -61,10 +125,13 @@ html, body {
 }
 
 h1 {
-    /*font-weight: 100;*/
     padding: 20px;
     font-family: MoonOnMars;
     font-size: 300%;
+}
+
+.panel_header {
+    text-align: center;
 }
 
 #classifier .panel_content {
@@ -107,13 +174,96 @@ button {
     border-style: solid;
     background-color: rgb(159, 76, 108);
     border-color: white;
-    /*padding-left: 6px;*/
     margin-top: 10px;
     font-family: MoonOnMars, sans-serif;
 }
+
+    #dendro_button {
+        left: 12.5%;
+        right: 12.5%;
+        position: absolute;
+        bottom: 40px;
+
+    }
+
+    #explain_button {
+        left: 12.5%;
+        right: 12.5%;
+        position: absolute;
+        background-color:#;
+        bottom: 40px;
+
+    }
 
     button:hover{
         background-color: white;
         color: rgb(159, 76, 108);
     }
 
+iframe{
+    margin:0 auto;
+    text-align:center;
+    height:200px;
+    border-color:white;
+    border-style:solid;
+
+      -ms-zoom: 0.75;
+        -moz-transform: scale(0.75);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.75);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(0.75);
+        -webkit-transform-origin: 0 0;
+}
+
+#cluster_results{
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.jcarousel {
+
+    position: relative;
+    overflow: hidden;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    margin-left:200px;
+
+}
+
+/*
+This is the container of the carousel items.
+You must ensure that the position is relative or absolute and
+that the width is big enough to contain all items.
+*/
+ul {
+    width: 90%;
+    position: relative;
+
+    /* Optional, required in this case since it's a <ul> element */
+    list-style: none;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    padding: 0;
+   }
+
+/*
+These are the item elements. jCarousel works best, if the items
+have a fixed width and height (but it's not required).
+*/
+ li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
+
+img.clusters{
+    margin-left:50px;
+}
