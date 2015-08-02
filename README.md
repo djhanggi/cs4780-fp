@@ -1,7 +1,7 @@
 CS4780 FA14 Final Project
 =========================
 
-[Subjective Metadata in Music Classification: Genre Prediction via Hiearchical Agglomerative Clustering](http://djh325.github.io/cs4780-fp/)
+[Subjective Metadata in Music Classification: Genre Prediction via Hiearchical Agglomerative Clustering](http://djhanggi.github.io/cs4780-fp/)
 
 Members
 =======
